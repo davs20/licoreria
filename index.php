@@ -88,6 +88,7 @@ if(isset($_POST["nombre_pro"])){
 
 
 $router->add('/Producto/Disable/:id',"Controllers\Producto::disable",null);
+$router->add('/Producto/Activate/:id',"Controllers\Producto::activate",null);
 
 
 $router->add('/Proveedores',"Controllers\Proveedor::showAll",null);

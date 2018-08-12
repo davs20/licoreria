@@ -100,7 +100,7 @@
 
                             {
                                 data: 'id_producto', render: function (data, type,row) {
-                                    if (row["estado_producto"]==1) return '<button type="button"   id="add-produc-'+data+'"  class="btn btn-primary" onclick="agregar(' + data + ')" ><i class="fas fa-plus-circle"></i></button>';
+                                    if (row["estado_producto"]==1 && row["existencia_producto"]>0) return '<button type="button"   id="add-produc-'+data+'"  class="btn btn-primary" onclick="agregar(' + data + ')" ><i class="fas fa-plus-circle"></i></button>';
                                     return '<button type="button"  disabled=""   class="btn btn-primary" onclick="agregar(' + data + ')" ><i class="fas fa-plus-circle"></i></button>';
                                 }
                             }
@@ -127,35 +127,43 @@
                        url:"http://localhost/licoreria/Producto/"+id,
                         success:function (data) {
                            var producto=jQuery.parseJSON(data);
-                            $("#detalle_producto").append('<div class="row " id="pro'+producto["id_producto"]+'" >\n' +
-                                '                                <div class="col-sm-1" >\n' +
-                                '                                    <label for="">Eliminar</label>\n' +
-                                '                                    <button class="btn-danger form-control" name="eliminar[]" onclick="eliminar('+producto["id_producto"]+')" >X</button>\n' +
-                                '                                </div>\n' +
-                                '                                <div class="col-sm-2">\n' +
-                                '                                    <label for="">Nombre</label>\n' +
-                                '                                    <input type="text" disabled class="form-control" value="'+producto['nombre_producto']+'" name="nombre[]">\n' +
-                                '                                </div>\n' +
-                                '                                <div class="col-sm-2">\n' +
-                                '                                    <label for="">Cantidad</label>\n' +
-                                '                                    <input type="number" class="form-control cantidad" value="1" min="0" onchange="cantidad('+producto['id_producto']+')" name="cantidad[]">\n' +
-                                '                                </div>\n' +
-                                '                                <div class="col-sm-2">\n' +
-                                '                                    <label for="">Subtotal</label>\n' +
-                                '                                    <input type="number"  min="1" disabled class="form-control subtotal" value="'+producto["precio_producto"]+'" onchange="total('+producto["id_producto"]+')" name="subtotal[]">\n' +
-                                '                                </div><input type="hidden" value="'+producto["id_producto"]+'" name="id_producto[]"><input type="hidden" value="'+producto["precio_producto"]+'" class="precio">\n' +
-                                '\n' +
-                                '                            </div>');
+                           if (producto["existencia_producto"]>0){
+                               $("#detalle_producto").append('<div class="row " id="pro'+producto["id_producto"]+'" >\n' +
+                                   '                                <div class="col-sm-1" >\n' +
+                                   '                                    <label for="">Eliminar</label>\n' +
+                                   '                                    <button class="btn-danger form-control" name="eliminar[]" onclick="eliminar('+producto["id_producto"]+')" >X</button>\n' +
+                                   '                                </div>\n' +
+                                   '                                <div class="col-sm-2">\n' +
+                                   '                                    <label for="">Nombre</label>\n' +
+                                   '                                    <input type="text" disabled class="form-control" value="'+producto['nombre_producto']+'" name="nombre[]">\n' +
+                                   '                                </div>\n' +
+                                   '                                <div class="col-sm-2">\n' +
+                                   '                                    <label for="">Cantidad</label>\n' +
+                                   '                                    <input type="number" class="form-control cantidad" value="1" min="0" onchange="cantidad('+producto['id_producto']+')" name="cantidad[]">\n' +
+                                   '                                </div>\n' +
+                                   '                                <div class="col-sm-2">\n' +
+                                   '                                    <label for="">Subtotal</label>\n' +
+                                   '                                    <input type="number"  min="1" disabled class="form-control subtotal" value="'+producto["precio_producto"]+'" onchange="total('+producto["id_producto"]+')" name="subtotal[]">\n' +
+                                   '                                </div><input type="hidden" value="'+producto["id_producto"]+'" name="id_producto[]"><input type="hidden" value="'+producto["precio_producto"]+'" class="precio">\n' +
+                                   '\n' +
+                                   '                            </div>');
 
-                            $("[name='total']").val(parseFloat(producto["precio_producto"])+parseFloat($("[name='total']").val()));
+                           }else {
+                               alert("Ya no hay existencia de este producto");
+                           }
+
+
+
+                            $("[name='total']").val(0);
+
+                            $(".subtotal").each(function () {
+                                $("[name='total']").val(parseFloat($(this).val())+parseFloat($("[name='total']").val()));
+
+                            });
 
                         }
                     });
 
-                    $(".subtotal").each(function () {
-                        $("[name='total']").val(parseFloat($(this).val())+parseFloat($("[name='total']").val()));
-
-                    });
 
 
 
@@ -170,6 +178,15 @@
 
 
                     $(sub).val(($(pre).val()*$(cant).val()));
+                    $("[name='total']").val(0);
+
+                    $(".subtotal").each(function () {
+                        $("[name='total']").val(parseFloat($(this).val())+parseFloat($("[name='total']").val()));
+
+                    });
+
+
+
 
 
                 }
@@ -178,14 +195,18 @@
                 function eliminar(id) {
                     var ida="#add-produc-"+id;
                     var pre="#pro"+id+" .precio".toString();
+                    var cant="#pro"+id+" .cantidad".toString();
 
                     $(ida).prop("disabled",false);
                     var dd="#pro"+id;
                     $(dd).remove();
+                    $("[name='total']").val(0);
+
                     $(".subtotal").each(function () {
-                       $("[name='total']").val($(this).val());
+                        $("[name='total']").val(parseFloat($(this).val())+parseFloat($("[name='total']").val()));
 
                     });
+
 
 
                 }
