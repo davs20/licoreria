@@ -129,7 +129,8 @@
                            var producto=jQuery.parseJSON(data);
                            if (producto["existencia_producto"]>0){
                                $("#detalle_producto").append('<div class="row " id="pro'+producto["id_producto"]+'" >\n' +
-                                   '                                <div class="col-sm-1" >\n' +
+                                   '                                <div class="col-sm-1" >' +
+                                   '<input type="hidden" class="existencia" value="'+producto["existencia_producto"]+'">\n' +
                                    '                                    <label for="">Eliminar</label>\n' +
                                    '                                    <button class="btn-danger form-control" name="eliminar[]" onclick="eliminar('+producto["id_producto"]+')" >X</button>\n' +
                                    '                                </div>\n' +
@@ -175,15 +176,21 @@
                     var cant="#pro"+id+" .cantidad".toString();
                     var sub="#pro"+id+" .subtotal".toString();
                     var pre="#pro"+id+" .precio".toString();
+                    var exis="#pro"+id+" .existencia".toString();
+                    if($(cant).val()>$(exis).val()){
+                        alert("Se ha llegado al limite de existencia");
+                        $(cant).val($(exis).val());
+                    }else{
+                        $(sub).val(($(pre).val()*$(cant).val()));
+                        $("[name='total']").val(0);
 
+                        $(".subtotal").each(function () {
+                            $("[name='total']").val(parseFloat($(this).val())+parseFloat($("[name='total']").val()));
 
-                    $(sub).val(($(pre).val()*$(cant).val()));
-                    $("[name='total']").val(0);
+                        });
 
-                    $(".subtotal").each(function () {
-                        $("[name='total']").val(parseFloat($(this).val())+parseFloat($("[name='total']").val()));
+                    }
 
-                    });
 
 
 
