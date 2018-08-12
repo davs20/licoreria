@@ -14,7 +14,7 @@ class Pedido
 {
     public function getPedidos(){
         $consulta=Connection::getConnection();
-        $result=$consulta->prepare("select * from pedido inner join categoria on categoria.id_categoria=producto.categoria_id");
+        $result=$consulta->prepare("select * from transaccion");
         $result->execute();
         while ($data = $result->fetch(\PDO::FETCH_ASSOC)){
             $array["data"][]=$data;

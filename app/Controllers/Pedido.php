@@ -26,8 +26,7 @@ class Pedido implements accionControllers
         // TODO: Implement edit() method.
     }
 
-    public function show($id)
-    {
+    public function show($id){
         // TODO: Implement show() method.
     }
 

@@ -17,6 +17,7 @@ return array(
     'Controllers\\Proveedor' => $baseDir . '/app/Controllers/Proveedor.php',
     'Controllers\\Usuario' => $baseDir . '/app/Controllers/Usuario.php',
     'Controllers\\accionControllers' => $baseDir . '/app/Controllers/accionControllers.php',
+    'FPDF' => $vendorDir . '/setasign/fpdf/fpdf.php',
     'Models\\Categoria' => $baseDir . '/app/Models/Categoria.php',
     'Models\\Empleado' => $baseDir . '/app/Models/Empleado.php',
     'Models\\Marca' => $baseDir . '/app/Models/Marca.php',
