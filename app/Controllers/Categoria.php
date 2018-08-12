@@ -28,6 +28,10 @@ public function show($id){
  }
 
 
+    public function create($data)
+    {
+        // TODO: Implement create() method.
+    }
 }
 
  ?>

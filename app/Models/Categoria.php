@@ -25,12 +25,19 @@ class Categoria
 	}
 
 	public function getCategoria($id){
+        $conn=Connection::getConnection();
+        $consulta=$conn->prepare("select * from categoria ");
+        $consulta->execute();
 
 	}
 
-	public function desableCategoria($id){
+	public function desable($id){
 
 	}
+
+    public function acivate($id){
+
+    }
 
 
 

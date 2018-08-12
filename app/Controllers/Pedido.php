@@ -8,7 +8,8 @@
 
 namespace Controllers;
 
-
+use Models\Pedido as ModelsPedido;
+use Models\DetallePedido as ModelsDetallePedido;
 
 class Pedido implements accionControllers
 {
@@ -32,6 +33,14 @@ class Pedido implements accionControllers
 
     public function disable($id)
     {
+        // TODO: Implement disable() method.
+    }
+
+    public function create($data){
+        ModelsPedido::crearPedido($data);
+//        array_push($data,$destino);
+
+        //ModelsDetallePedido::crearDetallePedido($data);
         // TODO: Implement disable() method.
     }
 }

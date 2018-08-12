@@ -33,7 +33,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Crear Marca</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Crear Proveedor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
             </div>
@@ -47,7 +47,7 @@
                         <input type="text" name="nombre_pro" class="form-control">
                     </div>
                     <div class="form-group"><label>Telefono</label>
-                        <input type="tel" name="telefono" class="form-control">
+                        <input type="text" name="telefono" class="form-control">
                     </div>
                     <div class="form-group"><label>Correo</label>
                         <input type="email" name="correo" class="form-control">
@@ -225,10 +225,13 @@
             success: function (data) {
                 var proveedor = jQuery.parseJSON(data);
                 console.log(proveedor["telefono_proveedor"]);
+
                 $("#edit [name='nombre_pro']").val(proveedor["nombre_proveedor"]);
+                $("#edit [name='id']").val(proveedor["id_proveedor"]);
                 $("#edit [name='telefono]").val(proveedor["telefono_proveedor"]);
                 $("#edit [name='correo']").val(proveedor["correo_proveedor"]);
                 $("#edit [name='direccion']").val(proveedor["direccion_proveedor"]);
+
 
 
 

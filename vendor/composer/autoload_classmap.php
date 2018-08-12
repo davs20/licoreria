@@ -19,6 +19,7 @@ return array(
     'Controllers\\accionControllers' => $baseDir . '/app/Controllers/accionControllers.php',
     'FPDF' => $vendorDir . '/setasign/fpdf/fpdf.php',
     'Models\\Categoria' => $baseDir . '/app/Models/Categoria.php',
+    'Models\\DetallePedido' => $baseDir . '/app/Models/DetallePedido.php',
     'Models\\Empleado' => $baseDir . '/app/Models/Empleado.php',
     'Models\\Marca' => $baseDir . '/app/Models/Marca.php',
     'Models\\Pedido' => $baseDir . '/app/Models/Pedido.php',

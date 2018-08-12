@@ -21,6 +21,7 @@ class Usuario implements accionControllers
 	    session_start();
         $hora = date('H:i');
         $_SESSION['user']=$consulta->nombre_usuario." ".$consulta->apellido_usuario;
+        $_SESSION["id_user"]=$consulta->id_usuario;
         $session_id = session_id();
         $token = hash('sha256', $hora.$session_id);
         $_SESSION['token'] = $token;
@@ -50,5 +51,10 @@ class Usuario implements accionControllers
     public function disable($id)
     {
         // TODO: Implement disable() method.
+    }
+
+    public function create($data)
+    {
+        // TODO: Implement create() method.
     }
 }

@@ -65,6 +65,30 @@ if(isset($_POST["id_marca"])){
 
 ));
 }
+if(isset($_POST["tipo_pedido"])){
+    $router->add('/Pedido/Create',"Controllers\Pedido::create",array(
+
+        "data"=> [
+            "usuario_id_transaccion"=>$_POST["id_usuario_transaccion"],
+            "tipo_pedido"=>$_POST["tipo_pedido"],
+             "nombre_producto"=>$_POST["nombre_producto"],
+           //  "nombre_producto"=>$_POST["nombre_producto[]"],
+             "id_producto"=>$_POST["id_producto"],
+             "cantidad_producto"=>$_POST["cantidad_producto"],
+             "subtotal_producto"=>$_POST["subtotal_producto"]
+
+        ]
+
+    ));
+    $router->add('/Pedido/Update',"Controllers\Pedido::edit",array(
+        "data"=> [
+            "usuario_id_transaccion"=>$_POST["id_usuario_transaccion"],
+            "tipo_pedido"=>$_POST["tipo_pedido"]
+        ]
+
+    ));
+}
+
 
 
 if(isset($_POST["nombre_pro"])){
@@ -81,7 +105,8 @@ if(isset($_POST["nombre_pro"])){
             "telefono_proveedor"=>$_POST["telefono"],
             "correo_proveedor"=>$_POST["correo"],
             "direccion_proveedor"=>$_POST["direccion"],
-            "img"=>$_FILES["img"]
+            "img"=>$_FILES["img"],
+            "id_proveedor"=>$_POST["id"]
         ]
     ));
 }
@@ -100,6 +125,8 @@ $router->add('/Proveedor/:id',"Controllers\Proveedor::show",null);
 $router->add('/Proveedor/Disable/:id',"Controllers\Proveedor::disable",null);
 $router->add('/Proveedor/Activate/:id',"Controllers\Proveedor::activate",null);
 $router->add('/Categorias',"Controllers\Categoria::showAll",null);
+$router->add('/Categoria/Activate/:id',"Controllers\Categoria::activate",null);
+$router->add('/Categoria/Disable/:id',"Controllers\Categoria::disable",null);
 $router->add('/Producto/:producto',"Controllers\Producto::show",null);
 $router->add('/Marca/:marca',"Controllers\Marca::show",null);
 

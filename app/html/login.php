@@ -38,7 +38,6 @@
 								</label>
 							</div>
                             <button type="submit" class="btn btn-primary">Login</button>
-
 					</form>
 				</div>
 			</div>
@@ -61,7 +60,7 @@
                     if(data==1){
                     	location.href ="http://localhost/licoreria/inicio";
                     }else{
-                    	console.log(data);
+                    	alert("Contrasena o Usuario Incorrectos Intente de Nuevo");
                     }
                 }
             })

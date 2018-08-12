@@ -25,7 +25,7 @@ class Proveedor implements accionControllers {
         $foto=$data["img"]["name"];
         $ruta=$data["img"]["tmp_name"];
         $destino="app/img/".$foto;
-        copy($ruta,$destino);
+//        copy($ruta,$destino);
         array_push($data,$destino);
         ModelsProveedor::edit($data);
         // TODO: Implement edit() method.

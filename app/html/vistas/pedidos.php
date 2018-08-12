@@ -1,6 +1,8 @@
 
 
-
+<?php
+session_start();
+?>
 
         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" >
             <h1>Pedido</h1>
@@ -9,11 +11,16 @@
                 <form action="" >
                     <div class="form-group">
                         <label for="">Usuario</label>
-                        <input type="text" disabled="" class="form-control" name="usuario">
+                        <input type="hidden" name="id_usuario_transaccion" value="<?php
+                        echo $_SESSION["id_user"];
+                        ?>">
+                        <input type="text" disabled="" value="<?php
+                        echo $_SESSION["user"];
+                        ?>" class="form-control" name="usuario">
                     </div>
                     <div class="form-group">
                         <label for="">Tipo de Pedido</label>
-                        <select name="" id="" class="form-control">
+                        <select name="tipo_pedido" id="" class="form-control">
                             <option value="" selected>Seleccione El tipo de pedido</option>
                             <option value="1">Entrada</option>
                             <option value="2">Salida</option>
@@ -118,7 +125,27 @@
 
 
             <script type="text/javascript">
+                $("form").submit(function (event) {
+                    event.preventDefault();
+                    var myform = $('form');
+                    // Find disabled inputs, and remove the "disabled" attribute
+                    var disabled = myform.find(':input:disabled').removeAttr('disabled');
 
+                    // serialize the form
+                    var serialized = myform.serialize();
+                    disabled.attr('disabled','disabled');
+                    console.log(serialized);
+                    $.ajax({
+                        url:"http://localhost/licoreria/Pedido/Create",
+                        data:serialized,
+                        type:"POST",
+                        success:function (data) {
+                            console.log(data)
+
+                        }
+                    });
+
+                });
 
                 function agregar(id) {
                     var ida="#add-produc-"+id;
@@ -136,15 +163,15 @@
                                    '                                </div>\n' +
                                    '                                <div class="col-sm-2">\n' +
                                    '                                    <label for="">Nombre</label>\n' +
-                                   '                                    <input type="text" disabled class="form-control" value="'+producto['nombre_producto']+'" name="nombre[]">\n' +
+                                   '                                    <input type="text" disabled class="form-control" value="'+producto['nombre_producto']+'" name="nombre_producto[]">\n' +
                                    '                                </div>\n' +
                                    '                                <div class="col-sm-2">\n' +
                                    '                                    <label for="">Cantidad</label>\n' +
-                                   '                                    <input type="number" class="form-control cantidad" value="1" min="0" onchange="cantidad('+producto['id_producto']+')" name="cantidad[]">\n' +
+                                   '                                    <input type="number" class="form-control cantidad" value="1" min="0" onchange="cantidad('+producto['id_producto']+')" name="cantidad_producto[]">\n' +
                                    '                                </div>\n' +
                                    '                                <div class="col-sm-2">\n' +
                                    '                                    <label for="">Subtotal</label>\n' +
-                                   '                                    <input type="number"  min="1" disabled class="form-control subtotal" value="'+producto["precio_producto"]+'" onchange="total('+producto["id_producto"]+')" name="subtotal[]">\n' +
+                                   '                                    <input type="number"  min="1" disabled step="any" class="form-control subtotal" value="'+producto["precio_producto"]+'" onchange="total('+producto["id_producto"]+')" name="subtotal_producto[]">\n' +
                                    '                                </div><input type="hidden" value="'+producto["id_producto"]+'" name="id_producto[]"><input type="hidden" value="'+producto["precio_producto"]+'" class="precio">\n' +
                                    '\n' +
                                    '                            </div>');

@@ -27,18 +27,19 @@ class Proveedor{
         $consulta=Connection::getConnection();
         if (isset($data[0])){
             $result=$consulta->prepare("Update proveedor set nombre_proveedor=:nombre,direccion_proveedor=:direccion
-            ,correo_proveedor=:correo,telefono_proveedor=:telefono,estado=:esta,img=:image where id_proveedor=:id");
+            ,correo_proveedor=:correo,telefono_proveedor=:telefono,img=:image where id_proveedor=:id");
             $result->bindParam(":image",$data[0]);
 
         }else{
             $result=$consulta->prepare("Update proveedor set nombre_proveedor=:nombre,direccion_proveedor=:direccion
-       ,correo_proveedor=:correo,telefono_proveedor=:telefono,,estado=:esta where id_proveedor=:id");
+       ,correo_proveedor=:correo,telefono_proveedor=:telefono where id_proveedor=:id");
         }
 
-        $result->bindParam(":id",$data["id_producto"]);
+        $result->bindParam(":id",$data["id_proveedor"]);
         $result->bindParam(":nombre",$data["nombre_proveedor"]);
         $result->bindParam(":telefono",$data["telefono_proveedor"]);
-        $result->bindParam(":direccion",$data["telefono_proveedor"]);
+        $result->bindParam(":direccion",$data["direccion_proveedor"]);
+        $result->bindParam(":correo",$data["correo_proveedor"]);
         $result->execute();
 
     }
