@@ -62,7 +62,7 @@ class Categoria
 
     public function crearCategoria($data){
         $consulta=Connection::getConnection();
-        $result=$consulta->prepare("Insert into categoria (nombre_categoria,estado) values (nombre_categoria=:nombre,DEFAULT )");
+        $result=$consulta->prepare("Insert into categoria (nombre_categoria) values (:nombre)");
         $result->bindParam(":nombre",$data["nombre_categoria"]);
         $result->execute();
     }

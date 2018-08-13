@@ -46,7 +46,7 @@ $("[href='http://localhost/licoreria/Usuarios']").click(function(event) {
     if($(this).children().attr("href")!=='#sub-item-1' && $(this).children().attr("href")!=='#sub-item-2'){
         $("#case").empty();
         $("#case").load(dir+"/usuarios.php");
-        $(this).attr("class").val("active")
+
 
 
     }

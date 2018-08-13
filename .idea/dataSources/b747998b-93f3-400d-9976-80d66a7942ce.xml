@@ -983,6 +983,7 @@
     <column id="252" parent="242" name="nombre_categoria">
       <Position>2</Position>
       <DataType>varchar(155)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="253" parent="242" name="estado">
