@@ -25,10 +25,11 @@ class Pedido
     public function crearPedido($data){
 
         $consulta=Connection::getConnection();
-        $result=$consulta->prepare("Insert into transaccion (tipo_transaccion, id_usuario,total_transaccion) VALUES(:tipo,:usuario,:total)");
+        $result=$consulta->prepare("Insert into transaccion (tipo_transaccion, id_usuario,total_transaccion,persona_id) VALUES(:tipo,:usuario,:total,:persona)");
         $result->bindParam(":tipo",$data["tipo_pedido"]);
         $result->bindParam(":total",$data["total"]);
         $result->bindParam(":usuario",$data["usuario_id_transaccion"]);
+        $result->bindParam(":persona",$data["persona_id"]);
         $result->execute();
 
 
@@ -44,8 +45,23 @@ class Pedido
             $result->bindParam(":sub",$data["subtotal_producto"][$a]);
             $result->bindParam(":id_trans",$id_trans->id_transaccion);
             $result->execute();
+            if ($data["tipo_pedido"]==1){
+                $produc=$consulta->prepare("Update producto set existencia_producto=existencia_producto+:cant where id_producto=:id");
+                $produc->bindParam(":cant",$data["cantidad_producto"][$a]);
+                $produc->bindParam(":id",$data["id_producto"][$a]);
+                $produc->execute();
+            }else if($data["tipo_pedido"]==2){
+                $produc=$consulta->prepare("Update producto set existencia_producto=existencia_producto-:cant where id_producto=:id");
+                $produc->bindParam(":cant",$data["cantidad_producto"][$a]);
+                $produc->bindParam(":id",$data["id_producto"][$a]);
+                $produc->execute();
+
+            }
+
 
         }
+
+
 
 
 

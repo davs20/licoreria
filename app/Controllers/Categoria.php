@@ -37,6 +37,8 @@ public function show($id){
 
     public function create($data)
     {
+        ModelsCategoria::crearCategoria($data);
+
         // TODO: Implement create() method.
     }
 }

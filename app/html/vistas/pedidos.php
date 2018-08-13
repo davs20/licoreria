@@ -127,7 +127,7 @@ session_start();
                     if($(this).val()==1){
                        $("#persona_tipo").append(' <div class="form-group">\n' +
                            '                        <label for="">Proveedor</label>\n' +
-                           '                        <select name="cliente"  required class="form-control">\n' +
+                           '                        <select name="persona"  required class="form-control">\n' +
                            '                        </select>\n' +
                            '                    </div>');
 
@@ -135,11 +135,10 @@ session_start();
                             url: "http://localhost/licoreria/Proveedores",
                             success: function (data) {
                                 var datos = jQuery.parseJSON(data);
-                                //console.log(datos["data"][0]["id_categoria"]);
-                                $("[name='categoria']").append("<option>Seleccione Proveedor</option>");
+                                $("[name='persona']").append("<option>Seleccione Proveedor</option>");
                                 for (var i = 0; i < datos["data"].length; i++) {
-                                    $("[name='cliente']").append("<option value='" + datos["data"][i]["id_proveedor"] + "'>" + datos["data"][i]["nombre_proveedor"] + "</option>");
-                                    //console.log( datos["data"].length);
+                                    $("[name='persona']").append("<option value='" + datos["data"][i]["id_proveedor"] + "'>" + datos["data"][i]["nombre_proveedor"] + "</option>");
+
                                 }
 
 
@@ -150,12 +149,24 @@ session_start();
 
                         $("#persona_tipo").append(' <div class="form-group">\n' +
                             '                        <label for="">Cliente</label>\n' +
-                            '                        <select name="proveedor_select"  required class="form-control">\n' +
-                            '                            <option value="" selected>Seleccione cliente</option>\n' +
-                            '                            <option value="1">Entrada</option>\n' +
-                            '                            <option value="2">Salida</option>\n' +
+                            '                        <select name="persona"  required class="form-control">\n' +
                             '                        </select>\n' +
                             '                    </div>');
+
+                        $.ajax({
+                            url: "http://localhost/licoreria/Clientes",
+                            success: function (data) {
+                                var datos = jQuery.parseJSON(data);
+                                $("[name='persona']").append("<option>Seleccione Cliente</option>");
+                                for (var i = 0; i < datos["data"].length; i++) {
+                                    $("[name='persona']").append("<option value='" + datos["data"][i]["id_cliente"] + "'>" + datos["data"][i]["nombre_cliente"] + "</option>");
+
+                                }
+
+
+                            }
+
+                        });
 
 
                     }
@@ -186,7 +197,11 @@ session_start();
                         data:serialized,
                         type:"POST",
                         success:function (data) {
-                            console.log(data)
+                            swal({
+                                title: "Transaccion Exitosa!",
+                                text: "Pedido Guardado!",
+                                icon: "success",
+                            });
 
                         }
                     });
@@ -223,7 +238,9 @@ session_start();
                                    '                            </div>');
 
                            }else {
-                               alert("Ya no hay existencia de este producto");
+
+                               swal( "Error" ,  "Se ha llegado al limite de la existencia en estre producto!" ,  "error" );
+
                            }
 
 
@@ -250,8 +267,9 @@ session_start();
                     var sub="#pro"+id+" .subtotal".toString();
                     var pre="#pro"+id+" .precio".toString();
                     var exis="#pro"+id+" .existencia".toString();
-                    if($(cant).val()>$(exis).val()){
-                        alert("Se ha llegado al limite de existencia");
+                    console.log($(cant).val());
+                    if(parseInt($(cant).val())>parseInt($(exis).val())){
+                        swal( "Error" ,  "Se ha llegado al limite de la existencia en este producto!" ,  "error" );
                         $(cant).val($(exis).val());
                     }else{
                         $(sub).val(($(pre).val()*$(cant).val()));

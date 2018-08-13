@@ -49,7 +49,7 @@
                 {data: 'total_transaccion'},
                 {
                     data: 'id_transaccion', render: function (data, type,row) {
-                         return '<button type="button"     class="btn btn-primary" onclick="edit(' + data + ')" ><i class="fas fa-edit"></i></button><button type="button"     class="btn btn-primary" onclick="reporte('+data+')" ><i class="fas fa-print"></i></button>';
+                         return '<button type="button"     class="btn btn-primary" onclick="edit(' + data + ')" ><i class="fas fa-edit"></i></button>';
                         //return '<button type="button"  disabled=""   class="btn btn-primary" onclick="agregar(' + data + ')" ><i class="fas fa-plus-circle"></i></button>';
                     }
                 }

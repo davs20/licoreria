@@ -26,7 +26,8 @@ class Categoria
 
 	public function getCategoria($id){
         $conn=Connection::getConnection();
-        $consulta=$conn->prepare("select * from categoria ");
+        $consulta=$conn->prepare("select * from categoria where id_categoria=:id");
+        $consulta->bindParam(":id",$id);
         $consulta->execute();
         return $consulta->fetchObject();
 
@@ -55,6 +56,14 @@ class Categoria
         $consulta=Connection::getConnection();
         $result=$consulta->prepare("Update categoria set estado=1 where id_categoria=:id");
         $result->bindParam(":id",$id);
+        $result->execute();
+    }
+
+
+    public function crearCategoria($data){
+        $consulta=Connection::getConnection();
+        $result=$consulta->prepare("Insert into categoria (nombre_categoria,estado) values (nombre_categoria=:nombre,DEFAULT )");
+        $result->bindParam(":nombre",$data["nombre_categoria"]);
         $result->execute();
     }
 

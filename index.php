@@ -46,24 +46,6 @@ if(isset($_POST["nombre_p"])){
 
 
 
-if(isset($_POST["id_cat"])){
-    $router->add('/Marca/Create',"Controllers\Marca::create",array(
-        "data"=> [
-            "nombre_marca"=>$_POST["nombre"],
-            "proveedor_id"=>$_POST["proveedor"],
-            "img"=>$_FILES["img"]
-        ]
-
-    ));
-    $router->add('/Marca/Update',"Controllers\Marca::edit",array(
-        "data"=> ["id_marca"=>$_POST["id"],
-            "nombre_marca"=>$_POST["nombre"],
-            "proveedor_id"=>$_POST["proveedor"],
-            "img"=>$_FILES["img"]
-        ]
-
-    ));
-}
 
 if(isset($_POST["id_marca"])){
     $router->add('/Marca/Create',"Controllers\Marca::create",array(
@@ -94,6 +76,7 @@ if(isset($_POST["tipo_pedido"])){
              "id_producto"=>$_POST["id_producto"],
              "cantidad_producto"=>$_POST["cantidad_producto"],
              "subtotal_producto"=>$_POST["subtotal_producto"],
+             "persona_id"=>$_POST["persona"],
              "total"=>$_POST["total"]
 
         ]
@@ -116,6 +99,10 @@ if (isset($_POST["id_cat"])){
             "id_categoria"=>$_POST["id_cat"]
 
         ]
+
+    ));
+    $router->add('/Categoria/Create',"Controllers\Categoria::create",array(
+        "data"=> ["nombre_categoria"=>$_POST["nombre_cat"]]
 
     ));
 

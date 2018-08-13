@@ -33,7 +33,51 @@
                     <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
                 <div class="panel-body">
                     <div class="canvas-wrapper">
-                        <canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+                                <h4>Pedidos</h4>
+                                <form action="">
+                                    <div class="form-group">
+                                        <label for="">Fecha</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Tipo Pedido</label>
+                                        <select name="tipo_pedido" id="">
+                                            <option value="1">Entrada</option>
+                                            <option value="2">Salida</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <button class="btn-success form-control">Enviar </button>
+                                    </div
+                                </form>
+
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Existencia Producto</h4>
+                                <form action="">
+                                    <div class="form-group">
+                                        <label for="">Fecha</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Producto</label>
+                                        <select name="producto" id="">
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <button class="btn-success form-control">Enviar </button>
+                                    </div
+                                </form>
+
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
