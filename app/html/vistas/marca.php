@@ -40,7 +40,7 @@
                 <form method="post" enctype="multipart/form-data" id="create">
 
                     <div class="form-group">
-                        <input type="hidden"  name="id" class="form-control">
+                        <input type="hidden"  name="id_marca" class="form-control">
                     </div>
                     <div class="form-group"><label>Nombre</label>
                         <input type="text" name="nombre" class="form-control">
@@ -174,7 +174,7 @@
                     <form method="post" id="edit" enctype="multipart/form-data">
 
                         <div class="form-group">
-                            <input type="hidden"  name="id" class="form-control"></div>
+                            <input type="hidden"  name="id_marca" class="form-control"></div>
                         <div class="form-group"><label>Nombre</label>
                             <input type="text" name="nombre" class="form-control"></div>
 
@@ -233,7 +233,7 @@
                 console.log(data);
                 var marca = jQuery.parseJSON(data);
                 $("#edit [name='nombre']").val(marca["nombre_marca"]);
-                $("#edit [name='id']").val(marca["id_marca"]);
+                $("#edit [name='id_marca']").val(marca["id_marca"]);
                 $("#edit [name='proveedor']").val(marca["proveedor_id"]);
 
 

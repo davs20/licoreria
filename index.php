@@ -57,7 +57,7 @@ if(isset($_POST["id_marca"])){
 
     ));
     $router->add('/Marca/Update',"Controllers\Marca::edit",array(
-    "data"=> ["id_marca"=>$_POST["id"],
+    "data"=> ["id_marca"=>$_POST["id_marca"],
         "nombre_marca"=>$_POST["nombre"],
         "proveedor_id"=>$_POST["proveedor"],
         "img"=>$_FILES["img"]

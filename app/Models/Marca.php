@@ -28,12 +28,17 @@ class Marca
 
     public function edit($data){
         $consulta=Connection::getConnection();
-        $result=$consulta->prepare("Update marca set nombre_marca=:nombre,proveedor_id=:proveedor,
+        if(isset($data[0])){
+            $result=$consulta->prepare("Update marca set nombre_marca=:nombre,proveedor_id=:proveedor,
 img=:image where id_marca=:id");
+            $result->bindParam(":image",$data[0],\PDO::PARAM_STR);
+        }else{
+            $result=$consulta->prepare("Update marca set nombre_marca=:nombre,proveedor_id=:proveedor where id_marca=:id");
+        }
         $result->bindParam(":id",$data["id_marca"]);
         $result->bindParam(":nombre",$data["nombre_marca"]);
         $result->bindParam(":proveedor",$data["proveedor_id"]);
-        $result->bindParam(":image",$data[0],\PDO::PARAM_STR);
+
         $result->execute();
 
     }
