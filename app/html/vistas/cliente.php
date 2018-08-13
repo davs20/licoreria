@@ -1,6 +1,6 @@
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div id="row panel panel-default ">
-        <h1>Proveedores</h1>
+        <h1>Clientes</h1>
         <button class="btn-primary" data-toggle="modal" data-target="#crearModal">Agregar</button>
     </div>
 
@@ -33,7 +33,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Crear Proveedor</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Crear Cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
             </div>
@@ -41,13 +41,13 @@
                 <form method="post" enctype="multipart/form-data" id="create">
 
                     <div class="form-group">
-                        <input type="hidden"  name="id" class="form-control">
+                        <input type="hidden"  name="id_cliente" class="form-control">
                     </div>
                     <div class="form-group"><label>Nombre</label>
-                        <input type="text" name="nombre_pro" class="form-control">
+                        <input type="text" name="nombre" class="form-control">
                     </div>
                     <div class="form-group"><label>Telefono</label>
-                        <input type="tel" name="telefono" class="form-control">
+                        <input type="text" name="telefono" class="form-control">
                     </div>
                     <div class="form-group"><label>Correo</label>
                         <input type="email" name="correo" class="form-control">
@@ -77,28 +77,28 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var tablaProveedor = $('#table_id').DataTable({
-            "ajax": "http://localhost/licoreria/Proveedores",
+        var tablaCliente = $('#table_id').DataTable({
+            "ajax": "http://localhost/licoreria/Clientes",
             "dataSrc": "",
             destroy: true,
             columns: [
-                {data: 'id_proveedor'},
-                {data: 'nombre_proveedor'},
-                {data: 'img',render: function (data) {
+                {data: 'id_cliente'},
+                {data: 'nombre_cliente'},
+                {data: 'img_cliente',render: function (data) {
                         return '<img src="http://localhost/licoreria/'+data+'" alt="Smiley face" width="80" height="80">';
 
                     }},
-                {data: 'correo_proveedor'},
-                {data: 'telefono_proveedor'},
-                {data: 'estado',render:function (data) {
+                {data: 'correo_cliente'},
+                {data: 'telefono_cliente'},
+                {data: 'estado_cliente',render:function (data) {
                         if (data==1){
                             return "Activado";
                         }
                         return "Deactivado"
                     }},
                 {
-                    data: 'id_proveedor', render: function (data, type, row) {
-                        if (row["estado"]==1){
+                    data: 'id_cliente', render: function (data, type, row) {
+                        if (row["estado_cliente"]==1){
                             return '<button type="button"   class="btn btn-primary" onclick="edit(' + data +')" data-toggle="modal" data-target="#exampleModal"><i class="far fa-edit"></i></button><button class="btn btn-danger" type="button"  onclick="disable('+data+')" ><i class="fas fa-ban"></i></button>';
                         }
                         return '<button type="button"   class="btn btn-primary" onclick="edit(' + data + ')" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button><button class=" btn btn-success" type="button"  onclick="activate('+data+')" ><i class="fas fa-check"></i></button>';
@@ -112,14 +112,14 @@
         $("#edit").submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url:"http://localhost/licoreria/Proveedor/Update",
+                url:"http://localhost/licoreria/Cliente/Update",
                 data: new FormData(this),
                 contentType: false,
                 cache: false,
                 processData:false,
                 type:"post",
                 success:function () {
-                    tablaProveedor.ajax.reload();
+                    tablaCliente.ajax.reload();
                 }
             });
         });
@@ -128,7 +128,7 @@
         $("#create").submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url:"http://localhost/licoreria/Proveedor/Create",
+                url:"http://localhost/licoreria/Cliente/Create",
                 type:"post",
                 data: new FormData(this),
                 contentType: false,
@@ -146,7 +146,7 @@
 
     function activate(id) {
         $.ajax({
-            url:"http://localhost/licoreria/Proveedor/Activate/" + id,
+            url:"http://localhost/licoreria/Cliente/Activate/" + id,
             data:id,
             success:function() {
 
@@ -155,7 +155,7 @@
     }
     function disable(id) {
         $.ajax({
-            url:"http://localhost/licoreria/Proveedor/Disable/" + id,
+            url:"http://localhost/licoreria/Cliente/Disable/" + id,
             data:id,
             success:function() {
 
@@ -173,7 +173,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal Proveedor</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modal Cliente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                 </div>
@@ -181,12 +181,13 @@
                     <form method="post" id="edit" enctype="multipart/form-data">
 
                         <div class="form-group">
-                            <input type="hidden"  name="id" class="form-control"></div>
+                            <input type="hidden"  name="id_cliente" class="form-control"></div>
                         <div class="form-group"><label>Nombre</label>
-                            <input type="text" name="nombre_pro" class="form-control"></div>
+                            <input type="text" name="nombre" required class="form-control"></div>
 
-                         <div class="form-group"><label>Telefono</label>
-                            <input type="tel" name="telefono" class="form-control"></div>
+                        <div class="form-group"><label>Telefono</label>
+                            <input type="tel" name="telefono" class="form-control">
+                        </div>
                         <div class="form-group"><label>Correo</label>
                             <input type="email" name="correo" class="form-control"></div>
 
@@ -220,17 +221,17 @@
 
     function edit(id) {
         $.ajax({
-            url: "http://localhost/licoreria/Proveedor/" + id,
+            url: "http://localhost/licoreria/Cliente/" + id,
             data: id,
             success: function (data) {
-                var proveedor = jQuery.parseJSON(data);
-                console.log(proveedor["telefono_proveedor"]);
+                var cliente = jQuery.parseJSON(data);
+                console.log(cliente["telefono_cliente"]);
 
-                $("#edit [name='nombre_pro']").val(proveedor["nombre_proveedor"]);
-                $("#edit [name='id']").val(proveedor["id_proveedor"]);
-                $("#edit [name='telefono']").val(proveedor["telefono_proveedor"]);
-                $("#edit [name='correo']").val(proveedor["correo_proveedor"]);
-                $("#edit [name='direccion']").val(proveedor["direccion_proveedor"]);
+                $("#edit [name='nombre']").val(cliente["nombre_cliente"]);
+                $("#edit [name='id_cliente']").val(cliente["id_cliente"]);
+                $("#edit [name='telefono']").val(cliente["telefono_cliente"]);
+                $("#edit [name='correo']").val(cliente["correo_cliente"]);
+                $("#edit [name='direccion']").val(cliente["direccion_cliente"]);
 
 
 
@@ -246,4 +247,3 @@
 
 
 </script>
-

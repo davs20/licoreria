@@ -1,7 +1,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div id="row panel panel-default ">
-        <h1>Marcas</h1>
-        <button class="btn-primary" data-toggle="modal" data-target="#crearModal">Agregar</button>
+        <h1>Pedidos</h1>
+       
     </div>
 
 
@@ -12,11 +12,12 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Fecha</th>
                 <th>Tipo Transaccion</th>
+                <th>Fecha</th>
                 <th>Usuario</th>
-                <th>Estado</th>
+                <th>Total Transaccion</th>
                 <th>Opciones</th>
+
 
             </tr>
             </thead>
@@ -27,74 +28,29 @@
     </div>
 </div>
 
-<div class="modal fade" id="crearModal" tabindex="-1" role="dialog" aria-labelledby="crearModal"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Crear Marca</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" enctype="multipart/form-data" id="create">
-
-                    <div class="form-group">
-                        <input type="hidden"  name="id" class="form-control">
-                    </div>
-                    <div class="form-group"><label>Nombre</label>
-                        <input type="text" name="nombre" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Proveedor</label>
-                        <select name="proveedor" class="form-control">
-
-                        </select></div>
-                    <div class="form-group">
-                        <label for="">Imagen</label>
-                        <input type="file" name="img" class="form-control">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary" >Guardar</button>
-                    </div>
-                </form>
-            </div>
-
-
-        </div>
-
-    </div>
-
-</div>
 
 <script type="text/javascript">
     $(document).ready(function () {
         var tablaMarca = $('#table_id').DataTable({
-            "ajax": "http://localhost/licoreria/Marcas",
+            "ajax": "http://localhost/licoreria/PedidosShow",
             "dataSrc": "",
             destroy: true,
             columns: [
-                {data: 'id_marca'},
-                {data: 'nombre_marca'},
-                {data: 'img',render: function (data) {
-                        return '<img src="http://localhost/licoreria/'+data+'" alt="Smiley face" width="80" height="80">';
-
+                {data: 'id_transaccion'},
+                {data: 'tipo_transaccion',render:function (data) {
+                    if (data==1){
+                        return 'Entrada';
+                    }
+                    return 'Salida';
+                        
                     }},
-                {data: 'nombre_proveedor'},
-                {data: 'estado',render:function (data) {
-                        if (data==1){
-                            return "Activado";
-                        }
-                        return "Deactivado"
-                    }},
+                {data: 'fecha_transaccion'},
+                {data: 'nombre_usuario'},
+                {data: 'total_transaccion'},
                 {
-                    data: 'id_marca', render: function (data, type, row) {
-                        if (row["estado"]==1){
-                            return '<button type="button"   class="btn btn-primary" onclick="edit(' + data +')" data-toggle="modal" data-target="#exampleModal"><i class="far fa-edit"></i></button><button class="btn btn-danger" type="button"  onclick="disable('+data+')" ><i class="fas fa-ban"></i></button>';
-                        }
-                        return '<button type="button"   class="btn btn-primary" onclick="edit(' + data + ')" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button><button class=" btn btn-success" type="button"  onclick="activate('+data+')" ><i class="fas fa-check"></i></button>';
+                    data: 'id_transaccion', render: function (data, type,row) {
+                         return '<button type="button"     class="btn btn-primary" onclick="edit(' + data + ')" ><i class="fas fa-edit"></i></button><button type="button"     class="btn btn-primary" onclick="reporte('+data+')" ><i class="fas fa-print"></i></button>';
+                        //return '<button type="button"  disabled=""   class="btn btn-primary" onclick="agregar(' + data + ')" ><i class="fas fa-plus-circle"></i></button>';
                     }
                 }
 
@@ -105,14 +61,14 @@
         $("#edit").submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url:"http://localhost/licoreria/Marca/Update",
+                url:"http://localhost/licoreria/PedidoShow/Update",
                 data: new FormData(this),
                 contentType: false,
                 cache: false,
                 processData:false,
                 type:"post",
                 success:function () {
-                    tablaMarca.ajax.reload();
+                    tablaPedidoShow.ajax.reload();
                 }
             });
         });
@@ -121,14 +77,14 @@
         $("#create").submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url:"http://localhost/licoreria/Marca/Create",
+                url:"http://localhost/licoreria/PedidoShow/Create",
                 type:"post",
                 data: new FormData(this),
                 contentType: false,
                 cache: false,
                 processData:false,
                 success:function () {
-                    tablaMarca.ajax.reload();
+                    tablaPedidoShow.ajax.reload();
                 }
             });
         });
@@ -139,7 +95,7 @@
 
     function activate(id) {
         $.ajax({
-            url:"http://localhost/licoreria/Marca/Activate/" + id,
+            url:"http://localhost/licoreria/PedidoShow/Activate/" + id,
             data:id,
             success:function() {
 
@@ -148,7 +104,7 @@
     }
     function disable(id) {
         $.ajax({
-            url:"http://localhost/licoreria/Marca/Disable/" + id,
+            url:"http://localhost/licoreria/PedidoShow/Disable/" + id,
             data:id,
             success:function() {
 
@@ -166,7 +122,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal Marca</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modal Pedido</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                 </div>
@@ -227,14 +183,14 @@
 
     function edit(id) {
         $.ajax({
-            url: "http://localhost/licoreria/Marca/" + id,
+            url: "http://localhost/licoreria/PedidoShow/" + id,
             data: id,
             success: function (data) {
                 console.log(data);
-                var marca = jQuery.parseJSON(data);
-                $("#edit [name='nombre']").val(marca["nombre_marca"]);
-                $("#edit [name='id']").val(marca["id_marca"]);
-                $("#edit [name='proveedor']").val(marca["proveedor_id"]);
+                var PedidoShow = jQuery.parseJSON(data);
+                $("#edit [name='nombre']").val(pedido["nombre_pedido"]);
+                $("#edit [name='id']").val(pedido["id_pedido"]);
+                $("#edit [name='proveedor']").val(pedido["proveedor_id"]);
 
 
             }

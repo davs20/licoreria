@@ -28,6 +28,8 @@ class Pedido implements accionControllers
     }
 
     public function show($id){
+        $datos=ModelsPedido::getPedidos();
+        echo json_encode($datos);
         // TODO: Implement show() method.
     }
 

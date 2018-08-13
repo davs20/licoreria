@@ -14,7 +14,7 @@ class Pedido
 {
     public function getPedidos(){
         $consulta=Connection::getConnection();
-        $result=$consulta->prepare("select * from transaccion");
+        $result=$consulta->prepare("select * from transaccion inner join usuario");
         $result->execute();
         while ($data = $result->fetch(\PDO::FETCH_ASSOC)){
             $array["data"][]=$data;
@@ -25,8 +25,9 @@ class Pedido
     public function crearPedido($data){
 
         $consulta=Connection::getConnection();
-        $result=$consulta->prepare("Insert into transaccion (tipo_transaccion, id_usuario) VALUES(:tipo,:usuario)");
+        $result=$consulta->prepare("Insert into transaccion (tipo_transaccion, id_usuario,total_transaccion) VALUES(:tipo,:usuario,:total)");
         $result->bindParam(":tipo",$data["tipo_pedido"]);
+        $result->bindParam(":total",$data["total"]);
         $result->bindParam(":usuario",$data["usuario_id_transaccion"]);
         $result->execute();
 

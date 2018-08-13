@@ -15,17 +15,24 @@ public function showAll(){
 }
 
 public function edit($data){
+    ModelsCategoria::edit($data);
 	
 
 } /// se va a mandar como array
     
 public function show($id){
-
+   $categoria=ModelsCategoria::getCategoria($id);
+   echo json_encode($categoria);
  }
 
  public function disable($id){
+     ModelsCategoria::disable($id);
     
  }
+    public function activate($id){
+        ModelsCategoria::activate($id);
+
+    }
 
 
     public function create($data)

@@ -66,6 +66,32 @@ $("[href='http://localhost/licoreria/Categorias']").click(function(event) {
     }
 });
 
+$("[href='http://localhost/licoreria/Reportes']").click(function(event) {
+
+    event.preventDefault();
+
+    if($(this).children().attr("href")!=='#sub-item-1' ){
+        $("#case").empty();
+        $("#case").load(dir+"/reportes.php");
+
+
+
+    }
+});
+
+$("[href='http://localhost/licoreria/PedidosShow']").click(function(event) {
+
+    event.preventDefault();
+
+    if($(this).children().attr("href")!=='#sub-item-1' ){
+        $("#case").empty();
+        $("#case").load(dir+"/pedidoshow.php");
+
+
+
+    }
+});
+
 $("[href='http://localhost/licoreria/Marcas']").click(function(event) {
 
     event.preventDefault();
@@ -93,8 +119,20 @@ $("[href='http://localhost/licoreria/Salidas']").click(function(event) {
 
     }
 });
+$("[href='http://localhost/licoreria/Clientes']").click(function(event) {
 
-$("")
+    event.preventDefault();
+
+    if($(this).children().attr("href")!=='#sub-item-1'){
+        $("#case").empty();
+        $("#case").load(dir+"/cliente.php");
+
+
+
+    }
+});
+
+
 
 // $(".nav menu li").click(function(event) {
 //

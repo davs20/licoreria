@@ -20,12 +20,17 @@ session_start();
                     </div>
                     <div class="form-group">
                         <label for="">Tipo de Pedido</label>
-                        <select name="tipo_pedido" id="" class="form-control">
+                        <select name="tipo_pedido"  required class="form-control">
                             <option value="" selected>Seleccione El tipo de pedido</option>
                             <option value="1">Entrada</option>
                             <option value="2">Salida</option>
                         </select>
                     </div>
+
+                    <div id="persona_tipo">
+
+                    </div>
+
                     <label for="">Detalle Productos</label>
                     <div >
                         <div class="form-group-sm" id="detalle_producto">
@@ -116,6 +121,47 @@ session_start();
                     });
                 });
 
+                $("[name='tipo_pedido']").on("change",function () {
+                    console.log($(this).val());
+                    $("#persona_tipo").empty();
+                    if($(this).val()==1){
+                       $("#persona_tipo").append(' <div class="form-group">\n' +
+                           '                        <label for="">Proveedor</label>\n' +
+                           '                        <select name="cliente"  required class="form-control">\n' +
+                           '                        </select>\n' +
+                           '                    </div>');
+
+                        $.ajax({
+                            url: "http://localhost/licoreria/Proveedores",
+                            success: function (data) {
+                                var datos = jQuery.parseJSON(data);
+                                //console.log(datos["data"][0]["id_categoria"]);
+                                $("[name='categoria']").append("<option>Seleccione Proveedor</option>");
+                                for (var i = 0; i < datos["data"].length; i++) {
+                                    $("[name='cliente']").append("<option value='" + datos["data"][i]["id_proveedor"] + "'>" + datos["data"][i]["nombre_proveedor"] + "</option>");
+                                    //console.log( datos["data"].length);
+                                }
+
+
+                            }
+
+                        });
+                    }else{
+
+                        $("#persona_tipo").append(' <div class="form-group">\n' +
+                            '                        <label for="">Cliente</label>\n' +
+                            '                        <select name="proveedor_select"  required class="form-control">\n' +
+                            '                            <option value="" selected>Seleccione cliente</option>\n' +
+                            '                            <option value="1">Entrada</option>\n' +
+                            '                            <option value="2">Salida</option>\n' +
+                            '                        </select>\n' +
+                            '                    </div>');
+
+
+                    }
+
+
+                })
 
 
 
@@ -167,7 +213,7 @@ session_start();
                                    '                                </div>\n' +
                                    '                                <div class="col-sm-2">\n' +
                                    '                                    <label for="">Cantidad</label>\n' +
-                                   '                                    <input type="number" class="form-control cantidad" value="1" min="0" onchange="cantidad('+producto['id_producto']+')" name="cantidad_producto[]">\n' +
+                                   '                                    <input type="number" class="form-control cantidad" value="1" min="1" onchange="cantidad('+producto['id_producto']+')" name="cantidad_producto[]">\n' +
                                    '                                </div>\n' +
                                    '                                <div class="col-sm-2">\n' +
                                    '                                    <label for="">Subtotal</label>\n' +

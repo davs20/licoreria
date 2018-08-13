@@ -46,6 +46,24 @@ if(isset($_POST["nombre_p"])){
 
 
 
+if(isset($_POST["id_cat"])){
+    $router->add('/Marca/Create',"Controllers\Marca::create",array(
+        "data"=> [
+            "nombre_marca"=>$_POST["nombre"],
+            "proveedor_id"=>$_POST["proveedor"],
+            "img"=>$_FILES["img"]
+        ]
+
+    ));
+    $router->add('/Marca/Update',"Controllers\Marca::edit",array(
+        "data"=> ["id_marca"=>$_POST["id"],
+            "nombre_marca"=>$_POST["nombre"],
+            "proveedor_id"=>$_POST["proveedor"],
+            "img"=>$_FILES["img"]
+        ]
+
+    ));
+}
 
 if(isset($_POST["id_marca"])){
     $router->add('/Marca/Create',"Controllers\Marca::create",array(
@@ -75,7 +93,8 @@ if(isset($_POST["tipo_pedido"])){
            //  "nombre_producto"=>$_POST["nombre_producto[]"],
              "id_producto"=>$_POST["id_producto"],
              "cantidad_producto"=>$_POST["cantidad_producto"],
-             "subtotal_producto"=>$_POST["subtotal_producto"]
+             "subtotal_producto"=>$_POST["subtotal_producto"],
+             "total"=>$_POST["total"]
 
         ]
 
@@ -90,7 +109,17 @@ if(isset($_POST["tipo_pedido"])){
 }
 
 
+if (isset($_POST["id_cat"])){
+    $router->add('/Categoria/Update',"Controllers\Categoria::edit",array(
+        "data"=> [
+            "nombre_categoria"=>$_POST["nombre_cat"],
+            "id_categoria"=>$_POST["id_cat"]
 
+        ]
+
+    ));
+
+}
 if(isset($_POST["nombre_pro"])){
     $router->add("/Proveedor/Create","Controllers\Proveedor::create",array(
         "data"=> ["nombre_proveedor"=>$_POST["nombre_pro"],
@@ -118,13 +147,16 @@ if(isset($_POST["nombre_pro"])){
 
 $router->add('/Producto/Disable/:id',"Controllers\Producto::disable",null);
 $router->add('/Producto/Activate/:id',"Controllers\Producto::activate",null);
-
+$router->add('/PedidosShow',"Controllers\Pedido::showAll",null);
 $router->add('/Proveedores',"Controllers\Proveedor::showAll",null);
+$router->add('/Clientes',"Controllers\Cliente::showAll",null);
 $router->add('/Usuarios',"Controllers\Usuario::showAll",null);
 $router->add('/Proveedor/:id',"Controllers\Proveedor::show",null);
+$router->add('/Cliente/:id',"Controllers\Cliente::show",null);
 $router->add('/Proveedor/Disable/:id',"Controllers\Proveedor::disable",null);
 $router->add('/Proveedor/Activate/:id',"Controllers\Proveedor::activate",null);
 $router->add('/Categorias',"Controllers\Categoria::showAll",null);
+$router->add('/Categoria/:id',"Controllers\Categoria::show",null);
 $router->add('/Categoria/Activate/:id',"Controllers\Categoria::activate",null);
 $router->add('/Categoria/Disable/:id',"Controllers\Categoria::disable",null);
 $router->add('/Producto/:producto',"Controllers\Producto::show",null);

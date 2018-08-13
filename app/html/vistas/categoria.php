@@ -38,10 +38,10 @@
                 <form method="post" enctype="multipart/form-data" id="create">
 
                     <div class="form-group">
-                        <input type="hidden"  name="id" class="form-control">
+                        <input type="hidden"  name="id_cat" class="form-control">
                     </div>
                     <div class="form-group"><label>Nombre</label>
-                        <input type="text" name="nombre" class="form-control">
+                        <input type="text" name="nombre_cat" class="form-control">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -157,9 +157,9 @@
                 <div class="modal-body">
                     <form method="post" id="edit" enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="hidden"  name="id" class="form-control"></div>
+                            <input type="hidden"  name="id_cat" class="form-control"></div>
                         <div class="form-group"><label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control"></div>
+                            <input type="text" name="nombre_cat" class="form-control"></div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary" >Guardar Cambios</button>
@@ -187,8 +187,8 @@
             success: function (data) {
                 console.log(data);
                 var categoria = jQuery.parseJSON(data);
-                $("#edit [name='nombre']").val(categoria["nombre_categoria"]);
-                $("#edit [name='id']").val(categoria["id_categoria"]);
+                $("#edit [name='nombre_cat']").val(categoria["nombre_categoria"]);
+                $("#edit [name='id_cat']").val(categoria["id_categoria"]);
 
 
 
