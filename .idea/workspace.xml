@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb17eb01-bd42-426f-a0ca-cffc9c9a608d" name="Default" comment="Reporte Pedidos Terminado">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b747998b-93f3-400d-9976-80d66a7942ce.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b747998b-93f3-400d-9976-80d66a7942ce.xml" afterDir="false" />
+    <list default="true" id="bb17eb01-bd42-426f-a0ca-cffc9c9a608d" name="Default" comment="Reporte Pedidos Terminado esa vez si">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controllers/Cliente.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/Cliente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controllers/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controllers/Usuario.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Cliente.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Cliente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Usuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/html/layout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/html/layout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/html/vistas/cliente.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/html/vistas/cliente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/html/vistas/reportes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/html/vistas/reportes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/html/vistas/usuarios.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/html/vistas/usuarios.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -101,17 +95,17 @@
         <counts>
           <entry key="cell" value="252" />
           <entry key="js" value="323" />
-          <entry key="php" value="20398" />
+          <entry key="php" value="20855" />
           <entry key="sql" value="313" />
-          <entry key="txt" value="550" />
+          <entry key="txt" value="561" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="10" />
           <entry key="JavaScript" value="323" />
-          <entry key="PHP" value="20384" />
-          <entry key="PLAIN_TEXT" value="550" />
+          <entry key="PHP" value="20841" />
+          <entry key="PLAIN_TEXT" value="561" />
           <entry key="SQL" value="106" />
           <entry key="Scratch" value="463" />
         </counts>
@@ -125,7 +119,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/html/vistas/reportes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="337">
@@ -144,19 +138,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/html/vistas/pedidos.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2070">
-              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/html/vistas/cliente.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1177">
-              <caret line="235" column="74" selection-start-line="235" selection-start-column="74" selection-end-line="235" selection-end-column="74" />
+            <state relative-caret-position="97">
+              <caret line="234" column="63" selection-start-line="234" selection-start-column="63" selection-end-line="234" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -173,17 +158,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="178" column="56" selection-start-line="178" selection-start-column="56" selection-end-line="178" selection-end-column="56" />
+            <state relative-caret-position="366">
+              <caret line="219" column="22" selection-start-line="219" selection-start-column="22" selection-end-line="219" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Models/Cliente.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="46" column="183" selection-start-line="46" selection-start-column="183" selection-end-line="46" selection-end-column="183" />
+            <state relative-caret-position="286">
+              <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -191,8 +176,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Controllers/Cliente.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+            <state relative-caret-position="435">
+              <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -247,9 +232,9 @@
       <find>usuario</find>
       <find>cliente</find>
       <find>Cliente</find>
-      <find>proveedor</find>
-      <find>create</find>
       <find>existencia</find>
+      <find>create</find>
+      <find>proveedor</find>
     </findStrings>
     <replaceStrings>
       <replace>Marca</replace>
@@ -338,11 +323,11 @@
         <option value="$PROJECT_DIR$/app/html/vistas/usuarios.php" />
         <option value="$PROJECT_DIR$/app/html/layout.php" />
         <option value="$USER_HOME$/Documentos/licoreriall.sql" />
+        <option value="$PROJECT_DIR$/app/html/vistas/reportes.php" />
+        <option value="$PROJECT_DIR$/app/html/vistas/cliente.php" />
+        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/app/Controllers/Cliente.php" />
         <option value="$PROJECT_DIR$/app/Models/Cliente.php" />
-        <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/app/html/vistas/cliente.php" />
-        <option value="$PROJECT_DIR$/app/html/vistas/reportes.php" />
       </list>
     </option>
   </component>
@@ -387,14 +372,7 @@
               <item name="licoreria" type="b2602c69:ProjectViewProjectNode" />
               <item name="licoreria" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="licoreria" type="b2602c69:ProjectViewProjectNode" />
-              <item name="licoreria" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="vistas" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -494,7 +472,7 @@
       <workItem from="1534174009641" duration="11256000" />
       <workItem from="1534194746727" duration="39508000" />
       <workItem from="1534237610880" duration="2895000" />
-      <workItem from="1534260196781" duration="23917000" />
+      <workItem from="1534260196781" duration="26077000" />
     </task>
     <task id="LOCAL-00001" summary="Sistema Licoreria">
       <created>1534054427871</created>
@@ -573,11 +551,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534267406636</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Reporte Pedidos Terminado esa vez si">
+      <created>1534284780267</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1534284780267</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="300885000" />
+    <option name="totallyTimeSpent" value="303045000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -614,7 +599,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.32954547" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32954547" />
       <window_info anchor="right" x="0" y="0" width="291" height="532" id="Documentation" order="4" side_tool="true" weight="0.32954547" />
     </layout>
   </component>
@@ -675,18 +660,8 @@
     <MESSAGE value="Reporte correccion fechas" />
     <MESSAGE value="Reportes de Datatable Corregidos" />
     <MESSAGE value="Reporte Pedidos Terminado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reporte Pedidos Terminado" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Models/Cliente.php</url>
-          <line>35</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Reporte Pedidos Terminado esa vez si" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reporte Pedidos Terminado esa vez si" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/html/vistas/pedidoshow.php">
@@ -972,38 +947,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Controllers/Cliente.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="178" column="56" selection-start-line="178" selection-start-column="56" selection-end-line="178" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Cliente.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="46" column="183" selection-start-line="46" selection-start-column="183" selection-end-line="46" selection-end-column="183" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://b747998b-93f3-400d-9976-80d66a7942ce/schema/licoreria/table/cliente">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/html/vistas/cliente.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1177">
-          <caret line="235" column="74" selection-start-line="235" selection-start-column="74" selection-end-line="235" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -1025,6 +972,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="360" column="53" selection-start-line="360" selection-start-column="53" selection-end-line="360" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/html/vistas/cliente.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="234" column="63" selection-start-line="234" selection-start-column="63" selection-end-line="234" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="219" column="22" selection-start-line="219" selection-start-column="22" selection-end-line="219" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Controllers/Cliente.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Cliente.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
         </state>
       </provider>
     </entry>

@@ -177,19 +177,20 @@ if(isset($_POST["nombre_cliente_cl"])){
     $router->add("/Cliente/Create","Controllers\Cliente::create",array(
         "data"=> ["nombre_cliente"=>$_POST["nombre_cliente_cl"],
             "apellido_cliente"=>$_POST["apellido_cliente"],
-            "telefono_cliente"=>$_POST["telefono"],
-            "correo_cliente"=>$_POST["correo"],
-            "direccion_cliente"=>$_POST["direccion"],
+            "telefono_cliente"=>$_POST["telefono_cliente"],
+            "correo_cliente"=>$_POST["correo_cliente"],
+            "direccion_cliente"=>$_POST["direccion_cliente"],
             "img"=>$_FILES["img"]
         ]
     ));
     $router->add("/Cliente/Update","Controllers\Cliente::edit",array(
         "data"=> ["nombre_cliente"=>$_POST["nombre_cliente_cl"],
-            "telefono_cliente"=>$_POST["telefono"],
-            "correo_cliente"=>$_POST["correo"],
-            "direccion_cliente"=>$_POST["direccion"],
-            "img"=>$_FILES["img"],
-            "id_cliente"=>$_POST["id_cliente"]
+            "telefono_cliente"=>$_POST["telefono_cliente"],
+            "correo_cliente"=>$_POST["correo_cliente"],
+            "direccion_cliente"=>$_POST["direccion_cliente"],
+            "id_cliente"=>$_POST["id_cliente"],
+            "img"=>$_FILES["img"]
+
         ]
     ));
 }
@@ -216,6 +217,8 @@ $router->add('/Unidades',"Controllers\Unidad::showAll",null);
 $router->add('/Categoria/:id',"Controllers\Categoria::show",null);
 $router->add('/Categoria/Activate/:id',"Controllers\Categoria::activate",null);
 $router->add('/Categoria/Disable/:id',"Controllers\Categoria::disable",null);
+$router->add('/Cliente/Activate/:id',"Controllers\Cliente::activate",null);
+$router->add('/Cliente/Disable/:id',"Controllers\Cliente::disable",null);
 $router->add('/Producto/:producto',"Controllers\Producto::show",null);
 $router->add('/Marca/:marca',"Controllers\Marca::show",null);
 

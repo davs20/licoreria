@@ -20,6 +20,7 @@ class Cliente implements accionControllers
     }
 
     public function edit($data){
+        ModelsCliente::edit($data);
         // TODO: Implement edit() method.
     }
 
@@ -31,6 +32,11 @@ class Cliente implements accionControllers
 
     public function disable($id){
         ModelsCliente::disable($id);
+        // TODO: Implement disable() method.
+    }
+
+    public function activate($id){
+        ModelsCliente::activate($id);
         // TODO: Implement disable() method.
     }
 

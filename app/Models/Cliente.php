@@ -31,12 +31,32 @@ class Cliente{
 
     }
 
+
+    public function disable($id){
+        $consulta=Connection::getConnection();
+        $result=$consulta->prepare("Update cliente set estado_cliente=0  where  id_cliente=:id");
+        $result->bindParam(":id",$id);
+        $result->execute();
+    }
+
+    public function activate($id){
+        $consulta=Connection::getConnection();
+        $result=$consulta->prepare("Update cliente set estado_cliente=1  where  id_cliente=:id");
+        $result->bindParam(":id",$id);
+        $result->execute();
+    }
+
+
     public function edit($data){
         $consulta=Connection::getConnection();
-        $result=$consulta->prepare("Update cliente set nombre_cliente=:nombre,apellido_cliente=:apellido,telefono_cliente=:telefono,correo_cliente=:correo ");
-        $result->bindParam(":id",$data["id_marca"]);
-        $result->bindParam(":nombre",$data["nombre_marca"]);
-        $result->bindParam(":proveedor",$data["proveedor_id"]);
+        $result=$consulta->prepare("Update cliente set nombre_cliente=:nombre,apellido_cliente=:apellido,telefono_cliente=:telefono,correo_cliente=:correo,direccion_cliente=:direccion,img_cliente=:image  where  id_cliente=:id");
+        $result->bindParam(":nombre",$data["nombre_cliente"]);
+        $result->bindParam(":apellido",$data["apellido_cliente"]);
+        $result->bindParam(":telefono",$data["telefono_cliente"]);
+        $result->bindParam(":correo",$data["correo_cliente"]);
+        $result->bindParam(":direccion",$data["direccion_cliente"]);
+        $result->bindParam(":id",$data["id_cliente"]);
+
         $result->bindParam(":image",$data[0],\PDO::PARAM_STR);
         $result->execute();
 
