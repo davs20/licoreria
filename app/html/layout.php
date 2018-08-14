@@ -25,9 +25,6 @@ $dir="http://localhost/licoreria";
                        <em class="fa fa-navicon">&nbsp;</em> Pedidos <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="fa fa-plus"></em></span>
                    </a>
                    <ul class="children collapse" id="sub-item-2">
-                       <li><a class="" href="<?php echo $dir.'/PedidosShow' ?>">
-                               <span class="fa fa-arrow-right">&nbsp;</span> Ver Pedidos
-                           </a></li>
                        <li><a class="" href="<?php echo $dir.'/Pedidos' ?>">
                                <span class="fa fa-arrow-right">&nbsp;</span> Registrar Pedido
                            </a></li>

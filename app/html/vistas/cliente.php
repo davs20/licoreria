@@ -44,7 +44,10 @@
                         <input type="hidden"  name="id_cliente" class="form-control">
                     </div>
                     <div class="form-group"><label>Nombre</label>
-                        <input type="text" name="nombre" class="form-control">
+                        <input type="text" name="nombre_cliente_cl" class="form-control">
+                    </div>
+                    <div class="form-group"><label>Apellido</label>
+                        <input type="text" name="apellido_cliente" class="form-control">
                     </div>
                     <div class="form-group"><label>Telefono</label>
                         <input type="text" name="telefono" class="form-control">
@@ -183,7 +186,9 @@
                         <div class="form-group">
                             <input type="hidden"  name="id_cliente" class="form-control"></div>
                         <div class="form-group"><label>Nombre</label>
-                            <input type="text" name="nombre" required class="form-control"></div>
+                            <input type="text" name="nombre_cliente_cl" required class="form-control"></div>
+                        <div class="form-group"><label>Apellido</label>
+                            <input type="text" name="apellido" required class="form-control"></div>
 
                         <div class="form-group"><label>Telefono</label>
                             <input type="tel" name="telefono" class="form-control">
@@ -227,7 +232,8 @@
                 var cliente = jQuery.parseJSON(data);
                 console.log(cliente["telefono_cliente"]);
 
-                $("#edit [name='nombre']").val(cliente["nombre_cliente"]);
+                $("#edit [name='nombre']").val(cliente["nombre_cliente_cl"]);
+                $("#edit [name='apellido']").val(cliente["apellido_cliente"]);
                 $("#edit [name='id_cliente']").val(cliente["id_cliente"]);
                 $("#edit [name='telefono']").val(cliente["telefono_cliente"]);
                 $("#edit [name='correo']").val(cliente["correo_cliente"]);

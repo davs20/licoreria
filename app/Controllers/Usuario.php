@@ -53,8 +53,13 @@ class Usuario implements accionControllers
         // TODO: Implement disable() method.
     }
 
-    public function create($data)
-    {
+    public function create($data){
+        $foto=$data["img"]["name"];
+        $ruta=$data["img"]["tmp_name"];
+        $destino="app/img/".$foto;
+        copy($ruta,$destino);
+        array_push($data,$destino);
+	    ModelUsuario::crearUsuario($data);
         // TODO: Implement create() method.
     }
 }

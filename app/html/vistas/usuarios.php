@@ -43,20 +43,30 @@
                         <input type="hidden"  name="id_usuario" class="form-control">
                     </div>
                     <div class="form-group"><label>Nombre</label>
-                        <input type="text" name="nombre" class="form-control">
+                        <input type="text" name="nombre_usuario" class="form-control">
                     </div>
 
                     <div class="form-group"><label>Apellido</label>
-                        <input type="text" name="apellido" class="form-control">
+                        <input type="text" name="apellido_usuario" class="form-control">
                     </div>
                     <div class="form-group"><label>Telefono</label>
-                        <input type="text" name="telefono" class="form-control">
+                        <input type="text" name="telefono_usuario" class="form-control">
                     </div>
                     <div class="form-group"><label>Correo</label>
-                        <input type="text" name="correo" class="form-control">
+                        <input type="text" name="id_usuario" class="form-control">
+                    </div>
+                    <div class="form-group"><label>Contrasena</label>
+                        <input type="password" name="pass" class="form-control">
                     </div>
                     <div class="form-group"><label>Telefono</label>
-                        <textarea name="direccion" id="" cols="30" rows="10"></textarea>
+                        <textarea name="direccion_usuario" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group"><label>Telefono</label>
+
+                        <select name="rol_usuario" id="" class="form-control">
+                            <option value="1">Adminisrador</option>
+                            <option value="2">Bodeguero</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -104,9 +114,9 @@
                 {
                     data: 'id_usuario', render: function (data, type, row) {
                         if (row["estado"] == 1) {
-                            return '<button type="button"   class="btn btn-primary" onclick="edit(' + data.toString() + ')" data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i></button><button class="btn btn-danger" type="button"  onclick="disable(' + data.toString() + ')" ><i class="fas fa-ban"></i></button>';
+                            return '<button type="button"   class="btn btn-primary" onclick="edit(' + toString(data) + ')" data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i></button><button class="btn btn-danger" type="button"  onclick="disable(' + data.toString() + ')" ><i class="fas fa-ban"></i></button>';
                         }
-                        return '<button type="button"   class="btn btn-primary" onclick="edit(' + data.toString() + ')" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></button><button class=" btn btn-success" type="button"  onclick="activate(' + data.toString() + ')" ><i class="fas fa-check"></i></button>';
+                        return '<button type="button"   class="btn btn-primary" onclick="edit(' + toString(data) + ')" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></button><button class=" btn btn-success" type="button"  onclick="activate(' + data.toString() + ')" ><i class="fas fa-check"></i></button>';
                     }
                 }
 
@@ -117,7 +127,7 @@
         $("#edit").submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url: "http://localhost/licoreria/Marca/Update",
+                url: "http://localhost/licoreria/Usuario/Update",
                 data: new FormData(this),
                 contentType: false,
                 cache: false,
@@ -133,7 +143,7 @@
         $("#create").submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url: "http://localhost/licoreria/Marca/Create",
+                url: "http://localhost/licoreria/Usuario/Create",
                 type: "post",
                 data: new FormData(this),
                 contentType: false,
@@ -149,32 +159,32 @@
     });
 
 
-    // function edit(id) {
-    //     console.log("hola");
-    //     $.ajax({
-    //         url: "http://localhost/licoreria/Usuario/" + id,
-    //         data: id,
-    //         success: function (data) {
-    //             var usuario = jQuery.parseJSON(data);
-    //             console.log(usuario["telefono_usuario"]);
-    //
-    //             $("#edit [name='nombre']").val(usuario["nombre_usuario"]);
-    //             $("#edit [name='id_cliente']").val(usuario["id_usuario"]);
-    //             $("#edit [name='apellido']").val(usuario["apellido_usuario"]);
-    //             $("#edit [name='telefono']").val(usuario["telefono_usuario"]);
-    //             $("#edit [name='correo']").val(usuario["correo_usuario"]);
-    //             $("#edit [name='direccion']").val(usuario["direccion_usuario"]);
-    //
-    //
-    //
-    //
-    //         }
-    //
-    //
-    //     });
-    //
-    //
-    // }
+    function edit(id) {
+        console.log("hola");
+        $.ajax({
+            url: "http://localhost/licoreria/Usuario/" + id,
+            data: id,
+            success: function (data) {
+                var usuario = jQuery.parseJSON(data);
+                console.log(usuario["telefono_usuario"]);
+
+                $("#edit [name='nombre']").val(usuario["nombre_usuario"]);
+                $("#edit [name='id_cliente']").val(usuario["id_usuario"]);
+                $("#edit [name='apellido']").val(usuario["apellido_usuario"]);
+                $("#edit [name='telefono']").val(usuario["telefono_usuario"]);
+                $("#edit [name='correo']").val(usuario["correo_usuario"]);
+                $("#edit [name='direccion']").val(usuario["direccion_usuario"]);
+
+
+
+
+            }
+
+
+        });
+
+
+    }
 
 
 
@@ -202,65 +212,6 @@
 
 
 </script>
-<!--<div id="modal">-->
-<!--    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal"-->
-<!--         aria-hidden="true">-->
-<!--        <div class="modal-dialog" role="document">-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header">-->
-<!--                    <h5 class="modal-title" id="exampleModalLabel">Modal Cliente</h5>-->
-<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                        <span aria-hidden="true"></span></button>-->
-<!--                </div>-->
-<!--                <div class="modal-body">-->
-<!--                    <form method="post" enctype="multipart/form-data" id="edit">-->
-<!---->
-<!--                        <div class="form-group">-->
-<!--                            <input type="hidden"  name="id_usuario" class="form-control">-->
-<!--                        </div>-->
-<!--                        <div class="form-group"><label>Nombre</label>-->
-<!--                            <input type="text" name="nombre" class="form-control">-->
-<!--                        </div>-->
-<!---->
-<!--                        <div class="form-group"><label>Apellido</label>-->
-<!--                            <input type="text" name="apellido" class="form-control">-->
-<!--                        </div>-->
-<!--                        <div class="form-group"><label>Telefono</label>-->
-<!--                            <input type="text" name="telefono" class="form-control">-->
-<!--                        </div>-->
-<!--                        <div class="form-group"><label>Correo</label>-->
-<!--                            <input type="text" name="correo" class="form-control">-->
-<!--                        </div>-->
-<!--                        <div class="form-group"><label>Telefono</label>-->
-<!--                            <textarea name="direccion" id="" cols="30" rows="10"></textarea>-->
-<!--                        </div>-->
-<!---->
-<!--                        <div class="form-group">-->
-<!--                            <label for="">Imagen</label>-->
-<!--                            <input type="file" name="img" class="form-control">-->
-<!--                        </div>-->
-<!--                        <div class="modal-footer">-->
-<!--                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>-->
-<!--                            <button type="submit" class="btn btn-primary" >Guardar</button>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!---->
-<!---->
-<!--            </div>-->
-<!---->
-<!--        </div>-->
-<!---->
-<!--    </div>-->
-<!---->
-<!---->
-<!--</div>-->
 
 
 
-<script type="text/javascript">
-
-
-
-
-</script>

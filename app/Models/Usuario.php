@@ -13,6 +13,20 @@ class Usuario
 
 	}
 
+	public function crearUsuario($data){
+        $consulta=Connection::getConnection();
+        $result=$consulta->prepare("Insert into usuario (id_usuario, nombre_usuario, apellido_usuario, direccion_usuario, telefono_usuario, rol_id, pass_usuario, img_usuario) VALUES(:id,:nombre,:apellido,:direccion,:telefono,:rol,:pass,:image)");
+        $result->bindParam(":id",$data["id_usuario"]);
+        $result->bindParam(":nombre",$data["nombre_usuario"]);
+        $result->bindParam(":apellido",$data["apellido_usuario"]);
+        $result->bindParam(":telefono",$data["telefono_usuario"]);
+        $result->bindParam(":direccion",$data["direccion_usuario"]);
+        $result->bindParam(":pass",$data["pass"]);
+        $result->bindParam(":rol",$data["rol_usuario"]);
+        $result->bindParam(":image",$data[0],\PDO::PARAM_STR);
+        $result->execute();
+    }
+
 
 	public function getUsuario($user,$pass){
 	    $conn=Connection::getConnection();

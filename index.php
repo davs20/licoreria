@@ -17,6 +17,9 @@ $router->add('/Marcas',"Controllers\Marca::showAll",null);
 $router->add('/Categoria',"Controllers\Categoria::showAll",null);
 
 
+
+
+
 if(isset($_POST["nombre_p"])){
     $router->add('/Producto/Update',"Controllers\Producto::edit",array(
         "data"=> ["id_producto"=>$_POST["id"],
@@ -78,7 +81,7 @@ if(isset($_POST["id_marca"])){
 
 ));
 }
-if(isset($_POST["tipo_pedido"])){
+if(isset($_POST["tipo_pedido"]) ){
     $router->add('/Pedido/Create',"Controllers\Pedido::create",array(
 
         "data"=> [
@@ -102,6 +105,25 @@ if(isset($_POST["tipo_pedido"])){
         ]
 
     ));
+}
+
+if (isset($_POST["id_usuario"])){
+    $router->add('/Usuario/Create',"Controllers\Usuario::create",array(
+
+        "data"=> [
+            "id_usuario"=>$_POST["id_usuario"],
+            "nombre_usuario"=>$_POST["nombre_usuario"],
+            "apellido_usuario"=>$_POST["apellido_usuario"],
+            "pass"=>$_POST["pass"],
+            "rol_usuario"=>$_POST["rol_usuario"],
+            "telefono_usuario"=>$_POST["telefono_usuario"],
+            "direccion_usuario"=>$_POST["direccion_usuario"],
+            "img"=>$_FILES["img"]
+
+        ]
+
+    ));
+
 }
 
 if (isset($_POST["id_transaccion_report"])){
@@ -147,6 +169,27 @@ if(isset($_POST["nombre_pro"])){
             "direccion_proveedor"=>$_POST["direccion"],
             "img"=>$_FILES["img"],
             "id_proveedor"=>$_POST["id"]
+        ]
+    ));
+}
+
+if(isset($_POST["nombre_cliente_cl"])){
+    $router->add("/Cliente/Create","Controllers\Cliente::create",array(
+        "data"=> ["nombre_cliente"=>$_POST["nombre_cliente_cl"],
+            "apellido_cliente"=>$_POST["apellido_cliente"],
+            "telefono_cliente"=>$_POST["telefono"],
+            "correo_cliente"=>$_POST["correo"],
+            "direccion_cliente"=>$_POST["direccion"],
+            "img"=>$_FILES["img"]
+        ]
+    ));
+    $router->add("/Cliente/Update","Controllers\Cliente::edit",array(
+        "data"=> ["nombre_cliente"=>$_POST["nombre_cliente_cl"],
+            "telefono_cliente"=>$_POST["telefono"],
+            "correo_cliente"=>$_POST["correo"],
+            "direccion_cliente"=>$_POST["direccion"],
+            "img"=>$_FILES["img"],
+            "id_cliente"=>$_POST["id_cliente"]
         ]
     ));
 }

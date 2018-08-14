@@ -66,13 +66,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Producto</label>
-                                        <select name="producto"  class="selectpicker" data-live-search="true" >
+                                        <select name="producto" class="form-control" >
 
                                         </select>
                                     </div>
                                     <div class="form-group">
 
-                                        <button type="submit" class="btn-success form-control">Enviar </button>
+                                        <button type="submit"  id="existenciaboton" class="btn-success form-control">Enviar </button>
                                     </div
                                 </form>
 
@@ -216,6 +216,7 @@
 
 <script>
 
+
     $(document).ready(function () {
 
 
@@ -241,25 +242,55 @@
                 data:$(this).serialize(),
                 type:"post",
                 success:function (data) {
-                    var result = jQuery.parseJSON(data);
-                    var tablaPedido = $('#table_transaccion').DataTable({
-                        data:result,
-                        destroy: true,
-                        columns: [
-                            {data: 'id_transaccion'},
-                            {data: 'fecha_transaccion'},
-                            {data: 'id_usuario'},
-                            {data: 'total_transaccion'},
-                            {data: 'persona_id'},
-                            {data:'id_transaccion',render:function (data,type,row) {
-                                return '<button type="submit" class="fas fa-print" onclick="report('+data+','+row["tipo_transaccion"]+')"></button>';
-
-                                }}
-
-
-                        ]
-                    });
                     console.log(data);
+                    var result = jQuery.parseJSON(data);
+                    if (result==null){
+                        swal ( "Advertencia" ,  "No se ha encontrado ningun pedido" ,  "warning" );
+                        var tablaPedido = $('#table_transaccion').DataTable({
+                            data:result,
+                            destroy: true,
+                            columns: [
+                                {data: 'id_transaccion'},
+                                {data: 'fecha_transaccion'},
+                                {data: 'id_usuario'},
+                                {data: 'total_transaccion'},
+                                {data: 'persona_id'},
+                                {data:'id_transaccion',render:function (data,type,row) {
+                                        return '<button type="submit" class="fas fa-print" onclick="report('+data+','+row["tipo_transaccion"]+')"></button>';
+
+                                    }}
+
+
+                            ]
+                        });
+                        tablaPedido.clear().draw();
+                    }else{
+
+                        var tablaPedido = $('#table_transaccion').DataTable({
+                            data:result,
+                            destroy: true,
+                            columns: [
+                                {data: 'id_transaccion'},
+                                {data: 'fecha_transaccion'},
+                                {data: 'id_usuario'},
+                                {data: 'total_transaccion'},
+                                {data: 'persona_id'},
+                                {data:'id_transaccion',render:function (data,type,row) {
+                                        return '<button type="submit" class="fas fa-print" onclick="report('+data+','+row["tipo_transaccion"]+')"></button>';
+
+                                    }}
+
+
+                            ]
+                        });
+
+
+                    }
+
+
+
+
+
                 }
             });
 
@@ -268,6 +299,8 @@
 
 
     });
+
+
 
 
     function report(dat,tipo) {
@@ -325,7 +358,7 @@
                         $("#nombre_persona").append(result[0]["nombre_cliente"]);
                         $("#correo_persona").append(result[0]["correo_proveedor"]);
                         $("#correo_persona").append(result[0]["telefono"]);
-                        $("#persona").append("Proveedor");
+                        $("#persona").append("Cliente");
                         $("#tipo").append("Salida");
 
                     }
@@ -337,15 +370,15 @@
 
     }
 
+
+</script>
+
+<script>
+    $("#existencia").trigger('submit');
     $("#existencia").submit(function (event) {
         event.preventDefault();
-        $.ajax({
-            url:"http://localhost/licoreria/Reporte/Existencia",
-            data:$(this).serialize(),
-            success:function (data) {
-                console.log(data);
-            }
-        });
+        console.log("sadsad");
 
     });
+
 </script>

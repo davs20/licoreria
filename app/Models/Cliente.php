@@ -42,11 +42,14 @@ class Cliente{
 
     }
 
-    public function crearMarca($data){
+    public function crearCliente($data){
         $consulta=Connection::getConnection();
-        $result=$consulta->prepare("Insert into marca (nombre_marca,proveedor_id,img) values(:nombre,proveedor,:image) ");
-        $result->bindParam(":nombre",$data["nombre_marca"]);
-        $result->bindParam(":proveedor",$data["proveedor_id"]);
+        $result=$consulta->prepare("Insert into cliente (nombre_cliente, apellido_cliente, telefono_cliente, correo_cliente, img_cliente, direccion_cliente) values(:nombre,:apellido,:telefono,:correo,:image,:direccion) ");
+        $result->bindParam(":nombre",$data["nombre_cliente"]);
+        $result->bindParam(":apellido",$data["apellido_cliente"]);
+        $result->bindParam(":telefono",$data["telefono_cliente"]);
+        $result->bindParam(":correo",$data["correo_cliente"]);
+        $result->bindParam(":direccion",$data["direccion_cliente"]);
         $result->bindParam(":image",$data[0],\PDO::PARAM_STR);
         $result->execute();
     }
