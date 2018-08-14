@@ -14,10 +14,10 @@ class Reporte
     public function pedidoReport($data){
         $consulta=Connection::getConnection();
         if ($data["tipo_pedido"]==1){
-            $result=$consulta->prepare("select * from transaccion inner join proveedor  on transaccion.persona_id = proveedor.id_proveedor where DATE (transaccion.fecha_transaccion) = DATE (:fecha)");
+            $result=$consulta->prepare("select id_transaccion,tipo_transaccion,fecha_transaccion,total_transaccion,id_usuario,persona_id,total_transaccion from transaccion inner join proveedor  on transaccion.persona_id = proveedor.id_proveedor where DATE (transaccion.fecha_transaccion) = DATE (:fecha)");
 
         }else{
-            $result=$consulta->prepare("select * from transaccion inner join cliente  on transaccion.persona_id = cliente.id_cliente where DATE (transaccion.fecha_transaccion)= DATE ()");
+            $result=$consulta->prepare("select * from transaccion inner join cliente  on transaccion.persona_id = cliente.id_cliente where DATE (transaccion.fecha_transaccion)= DATE (:fecha)");
         }
 
         $time = strtotime($data["fecha_pedido"]);
@@ -27,7 +27,7 @@ class Reporte
          $result->bindParam(":fecha",$newformat,\PDO::PARAM_STR);
          $result->execute();
         while ($data = $result->fetch(\PDO::FETCH_ASSOC)){
-            $array["data"][]=$data;
+            $array[]=$data;
         }
         return $array;
 

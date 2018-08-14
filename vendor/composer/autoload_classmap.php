@@ -11,6 +11,7 @@ return array(
     'Configuracion\\Routing\\Router' => $baseDir . '/app/Configuracion/Routing/Router.php',
     'Controllers\\Categoria' => $baseDir . '/app/Controllers/Categoria.php',
     'Controllers\\Cliente' => $baseDir . '/app/Controllers/Cliente.php',
+    'Controllers\\DetallePedido' => $baseDir . '/app/Controllers/DetallePedido.php',
     'Controllers\\Login' => $baseDir . '/app/Controllers/Login.php',
     'Controllers\\Marca' => $baseDir . '/app/Controllers/Marca.php',
     'Controllers\\Pedido' => $baseDir . '/app/Controllers/Pedido.php',

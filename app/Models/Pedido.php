@@ -22,6 +22,7 @@ class Pedido
         return $array;
     }
 
+
     public function crearPedido($data){
 
         $consulta=Connection::getConnection();

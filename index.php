@@ -52,7 +52,7 @@ if(isset($_POST["fecha_pedido_reporte"])){
     $router->add('/Reporte/Pedido',"Controllers\Reporte::pedidoReport",array(
         "data"=> [
             "fecha_pedido"=>$_POST["fecha_pedido_reporte"],
-            "tipo_pedido"=>$_POST["tipo_pedido"]
+            "tipo_pedido"=>$_POST["tipo_pedido_reporte"]
         ]
 
     ));
@@ -150,6 +150,7 @@ $router->add('/Proveedores',"Controllers\Proveedor::showAll",null);
 $router->add('/Clientes',"Controllers\Cliente::showAll",null);
 $router->add('/Usuarios',"Controllers\Usuario::showAll",null);
 $router->add('/Proveedor/:id',"Controllers\Proveedor::show",null);
+$router->add('/DetalleTransaccion/:id',"Controllers\DetallePedido::show",null);
 $router->add('/Cliente/:id',"Controllers\Cliente::show",null);
 $router->add('/Proveedor/Disable/:id',"Controllers\Proveedor::disable",null);
 $router->add('/Proveedor/Activate/:id',"Controllers\Proveedor::activate",null);
