@@ -31,7 +31,7 @@ class Producto{
 		$consulta=Connection::getConnection();
 		$result=$consulta->prepare("Update producto set nombre_producto=:nombre,descripcion_producto=:descripcion,
 categoria_id=:categoria,existencia_producto=:existencia,proveedor_id=:proveedor,
-marca_id=:marca,img=:image where id_producto=:id");
+marca_id=:marca,img=:image,unidad_id=:unidad where id_producto=:id");
 	    $result->bindParam(":id",$data["id_producto"]);
         $result->bindParam(":nombre",$data["nombre_producto"]);
         $result->bindParam(":existencia",$data["existencia_producto"]);
@@ -39,6 +39,7 @@ marca_id=:marca,img=:image where id_producto=:id");
         $result->bindParam(":descripcion",$data["descripcion_producto"]);
         $result->bindParam(":categoria",$data["categoria_id"]);
         $result->bindParam(":marca",$data["marca_id"]);
+        $result->bindParam(":unidad",$data["unidad_id"]);
         $result->bindParam(":image",$data[0],\PDO::PARAM_STR);
 	    $result->execute();
 
@@ -71,6 +72,7 @@ marca_id=:marca,img=:image where id_producto=:id");
         $result->bindParam(":descripcion",$data["descripcion_producto"]);
         $result->bindParam(":categoria",$data["categoria_id"]);
         $result->bindParam(":marca",$data["marca_id"]);
+        $result->bindParam(":unidad",$data["unidad_id"]);
         $result->bindParam(":image",$data[0],\PDO::PARAM_STR);
         $result->execute();
     }

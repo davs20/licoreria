@@ -57,6 +57,7 @@ $dir="http://localhost/licoreria";
                        <li><a class="" href="<?php echo $dir.'/Marcas' ?>">
                                <span class="fa fa-arrow-right">&nbsp;</span> Marca
                            </a></li>
+
                    </ul>
                </li>
                <li><a href="<?php echo $dir.'/login' ?>"><em class="fa fa-power-off">&nbsp;</em>Salir</a></li>

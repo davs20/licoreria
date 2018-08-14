@@ -27,6 +27,7 @@ if(isset($_POST["nombre_p"])){
                  "categoria_id"=>$_POST["categoria"],
                  "marca_id"=>$_POST["marca"],
                  "img"=>$_FILES["img"]
+
             ]
 
     ));
@@ -52,7 +53,8 @@ if(isset($_POST["fecha_pedido_reporte"])){
     $router->add('/Reporte/Pedido',"Controllers\Reporte::pedidoReport",array(
         "data"=> [
             "fecha_pedido"=>$_POST["fecha_pedido_reporte"],
-            "tipo_pedido"=>$_POST["tipo_pedido_reporte"]
+            "tipo_pedido"=>$_POST["tipo_pedido_reporte"],
+
         ]
 
     ));
@@ -102,6 +104,17 @@ if(isset($_POST["tipo_pedido"])){
     ));
 }
 
+if (isset($_POST["id_transaccion_report"])){
+    $router->add('/Reporte/Pedidoinfo',"Controllers\Reporte::pedidoReportinfo",array(
+        "data"=> [
+            "id_transaccion"=>$_POST["id_transaccion_report"],
+            "tipo_transaccion"=>$_POST["tipo_transaccion_report"]
+
+        ]
+
+    ));
+
+}
 
 if (isset($_POST["id_cat"])){
     $router->add('/Categoria/Update',"Controllers\Categoria::edit",array(
@@ -150,11 +163,13 @@ $router->add('/Proveedores',"Controllers\Proveedor::showAll",null);
 $router->add('/Clientes',"Controllers\Cliente::showAll",null);
 $router->add('/Usuarios',"Controllers\Usuario::showAll",null);
 $router->add('/Proveedor/:id',"Controllers\Proveedor::show",null);
+
 $router->add('/DetalleTransaccion/:id',"Controllers\DetallePedido::show",null);
 $router->add('/Cliente/:id',"Controllers\Cliente::show",null);
 $router->add('/Proveedor/Disable/:id',"Controllers\Proveedor::disable",null);
 $router->add('/Proveedor/Activate/:id',"Controllers\Proveedor::activate",null);
 $router->add('/Categorias',"Controllers\Categoria::showAll",null);
+$router->add('/Unidades',"Controllers\Unidad::showAll",null);
 $router->add('/Categoria/:id',"Controllers\Categoria::show",null);
 $router->add('/Categoria/Activate/:id',"Controllers\Categoria::activate",null);
 $router->add('/Categoria/Disable/:id',"Controllers\Categoria::disable",null);

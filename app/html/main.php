@@ -19,23 +19,18 @@
 <body>
 
 <?php
-
 include "header.php";
-
 echo '<div class="container-fluid">
 <div class="row">
 <div class="col-md-2">';
-
 include "layout.php";
- echo '</div>';
+echo '</div>';
 echo '<div id="case" class="col-md-12">';
-
 include "vistas/".$_POST['vista'].".php";
 echo "</div>
 </div></div>";
-
-
 ?>
+
 
 
 

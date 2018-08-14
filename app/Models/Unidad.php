@@ -8,8 +8,19 @@
 
 namespace Models;
 
+use Configuracion\Connection;
 
-class Unidad
-{
+
+class Unidad{
+    public function getUnidades(){
+        $consulta=Connection::getConnection();
+        $result=$consulta->prepare("select * from unidad");
+        $result->execute();
+        while ($data = $result->fetch(\PDO::FETCH_ASSOC)){
+            $array["data"][]=$data;
+        }
+        return $array;
+    }
+
 
 }

@@ -17,6 +17,11 @@ class Reporte{
         echo  json_encode($report);
 
     }
+    public function pedidoReportinfo($data){
+        $report=ModelsReporte::pedidoReportinfo($data);
+        echo  json_encode($report);
+
+    }
 
     public function existenciaReport($data){
          $report=ModelsReporte::existenciaReport($data);

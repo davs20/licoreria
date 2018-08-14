@@ -262,6 +262,22 @@
         });
 
         $.ajax({
+            url: "http://localhost/licoreria/Unidades",
+            success: function (data) {
+                var datos = jQuery.parseJSON(data);
+                //console.log(datos["data"][0]["id_categoria"]);
+                $("[name='categoria']").append("<option>Seleccione Unidad</option>");
+                for (var i = 0; i < datos["data"].length; i++) {
+                    $("[name='unidad']").append("<option value='" + datos["data"][i]["id_unidad"] + "'>" + datos["data"][i]["nombre_unidad"] + "</option>");
+                    //console.log( datos["data"].length);
+                }
+
+
+            }
+
+        });
+
+        $.ajax({
             url: "http://localhost/licoreria/Marcas",
             success: function (data) {
                 var datos = jQuery.parseJSON(data);

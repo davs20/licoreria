@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Producto</label>
-                                        <select name="producto" id="">
+                                        <select name="producto"  class="selectpicker" data-live-search="true" >
 
                                         </select>
                                     </div>
@@ -90,7 +90,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Parametros
+                    Pedido
                     <ul class="pull-right panel-settings panel-button-tab-right">
                         <li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
                                 <em class="fa fa-cogs"></em>
@@ -122,10 +122,9 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tipo Transaccion</th>
                                     <th>Fecha</th>
                                     <th>Id Usuario</th>
-                                    <th>Total Transaccion</th>
+                                    <th>Valor Transaccion</th>
                                     <th>Destinatario</th>
                                     <th>Opciones</th>
 
@@ -159,30 +158,35 @@
                     <div class="canvas-wrapper">
                         <div class="row">
                             <div class="col-md-5 col-sm-4">
-                                <h3>Transaccion #</h3>
-                                <h3>Tipo Transaccion:</h3>
-                                <h4>Fecha Emision</h4>
+                                <h3 >Transaccion # : </h3><div id="trans"></div>
+
+                                <h3 >Tipo Transaccion:</h3><div id="tipo"></div>
+                                <h4 >Fecha Emision</h4><div id="fecha"></div>
                             </div>
                             <div class="col-md-offset-7">
-                                <h1>Bodegas </h1>
-                                <h5>Direccion</h5>
-                                <h5>Website</h5>
-                                <h5>Numero De telefono</h5>
+                                <h1>Bodegas Lumino</h1>
+                                <h5>Direccion : Parque Placentero</h5>
+                                <h5>Website: www.lumino.com</h5>
+                                <h5>Numero De telefono : 9977433/22446846</h5>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <hr>
                                 <h4>Generado Por</h4>
-                                <h5>Nombre</h5>
-                                <h5>Correo</h5>
-                                <h5>Telefono</h5>
+                                <div class="col-md-2">
+                                    <h5 >Nombre:</h5> <div id="nombre_usuario"></div>
+                                    <h5 >Correo:</h5><div id="correo_usuario"></div>
+                                    <h5>Telefono:</h5><div id="telefono_usuario"></div>
+                                </div>
+
+
                             </div>
                             <div class="col-md-offset-7">
                                 <hr>
-                                <h4>Persona</h4>
-                                <h5>Nombre</h5>
-                                <h5>Correo</h5>
+                                <h4 id="persona"></h4>
+                                <h5 id="nombre_persona">Nombre :</h5>
+                                <h5 id="correo_persona">Correo :</h5>
                             </div>
                         </div>
                         <div class="row">
@@ -191,9 +195,10 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Cantidad</th>
+                                    <th>Cantidad Movida</th>
+                                    <th>Unidad</th>
                                     <th>Subtotal</th>
-                                    <th>Existencia</th>
+                                    <th>Existencia </th>
 
                                 </tr>
                                 </thead>
@@ -214,7 +219,19 @@
     $(document).ready(function () {
 
 
+        $.ajax({
+            url: "http://localhost/licoreria/Productos",
+            success: function (data) {
+                var datos = jQuery.parseJSON(data);
+                $("[name='producto']").append("<option>Seleccione Producto</option>");
+                for (var i = 0; i < datos["data"].length; i++) {
+                    $("[name='producto']").append("<option data-tokens='"+datos["data"][i]["nombre_producto"]+"' value='" + datos["data"][i]["id_producto"] + "'>" + datos["data"][i]["nombre_producto"] + "</option>");
+                }
 
+
+            }
+
+        });
 
 
         $("#pedido").submit(function (event) {
@@ -230,13 +247,12 @@
                         destroy: true,
                         columns: [
                             {data: 'id_transaccion'},
-                            {data: 'tipo_transaccion'},
                             {data: 'fecha_transaccion'},
                             {data: 'id_usuario'},
                             {data: 'total_transaccion'},
                             {data: 'persona_id'},
-                            {data:'id_transaccion',render:function (data) {
-                                return '<button type="submit" class="fas fa-print" onclick="report('+data+')"></button>';
+                            {data:'id_transaccion',render:function (data,type,row) {
+                                return '<button type="submit" class="fas fa-print" onclick="report('+data+','+row["tipo_transaccion"]+')"></button>';
 
                                 }}
 
@@ -254,20 +270,69 @@
     });
 
 
-    function report(data) {
+    function report(dat,tipo) {
         var tablaProducto = $('#table_producto').DataTable({
-            "ajax": "http://localhost/licoreria/DetalleTransaccion/"+data,
+            "ajax": "http://localhost/licoreria/DetalleTransaccion/"+dat,
             "dataSrc": "",
             destroy: true,
             columns: [
                 {data: 'id_producto'},
                 {data: 'nombre_producto'},
                 {data: 'cantidad_producto'},
+                {data: 'nombre_unidad'},
                 {data: 'subtotal'},
                 {data: 'existencia_producto'}
 
             ]
         });
+
+            $.ajax({
+                url:"http://localhost/licoreria/Reporte/Pedidoinfo",
+                data:{
+                    "id_transaccion_report":dat,
+                    "tipo_transaccion_report":tipo
+                },
+                type:"post",
+                success:function (data) {
+
+                    console.log(data);
+                    var result = jQuery.parseJSON(data);
+                    $("#tipo").empty();
+                    $("#trans").empty();
+                    $("#fecha").empty();
+                    $("#persona").empty();
+                    $("#fecha").append(result[0]["fecha_transaccion"]);
+                    $("#trans").append(result[0]["id_transaccion"]);
+                    $("#nombre_usuario").empty();
+                    $("#correo_usuario").empty();
+                    $("#telefono_usuario").empty();
+                    $("#nombre_usuario").append(result[0]["nombre_usuario"]);
+                    $("#correo_usuario").append(result[0]["id_usuario"]);
+                    $("#telefono_usuario").append(result[0]["telefono_usuario"]);
+                    $("#nombre_persona").empty();
+                    $("#correo_persona").empty();
+                    $("#telefono_persona").empty();
+
+                    console.log(result[0]["tipo_transaccion"])
+                    if(result[0]["tipo_transaccion"]==1){
+                        $("#persona").append("Proveedor");
+
+                        $("#nombre_persona").append(result[0]["nombre_proveedor"]);
+                        $("#correo_persona").append(result[0]["correo_proveedor"]);
+                        $("#telefono_persona").append(result[0]["telefono_proveedor"]);
+                        $("#tipo").append("Entrada");
+                    }else {
+                        $("#nombre_persona").append(result[0]["nombre_cliente"]);
+                        $("#correo_persona").append(result[0]["correo_proveedor"]);
+                        $("#correo_persona").append(result[0]["telefono"]);
+                        $("#persona").append("Proveedor");
+                        $("#tipo").append("Salida");
+
+                    }
+
+
+                }
+            });
 
 
     }
