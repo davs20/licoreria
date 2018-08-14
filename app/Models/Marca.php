@@ -45,7 +45,7 @@ img=:image where id_marca=:id");
 
     public function crearMarca($data){
         $consulta=Connection::getConnection();
-        $result=$consulta->prepare("Insert into marca (nombre_marca,proveedor_id,img) values(:nombre,proveedor,:image) ");
+        $result=$consulta->prepare("Insert into marca (nombre_marca,proveedor_id,img) values(:nombre,:proveedor,:image) ");
         $result->bindParam(":nombre",$data["nombre_marca"]);
         $result->bindParam(":proveedor",$data["proveedor_id"]);
         $result->bindParam(":image",$data[0],\PDO::PARAM_STR);

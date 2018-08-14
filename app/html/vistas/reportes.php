@@ -36,31 +36,33 @@
                         <div class="row justify-content-center">
                             <div class="col-md-6">
                                 <h4>Pedidos</h4>
-                                <form action="">
+                                <form action="" id="pedido">
                                     <div class="form-group">
                                         <label for="">Fecha</label>
-                                        <input type="date" class="form-control">
+                                        <input type="date" name="fecha_pedido_reporte" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Tipo Pedido</label>
                                         <select name="tipo_pedido" id="">
+                                            <option value="0">Seleccione el tipo de Pedido</option>
                                             <option value="1">Entrada</option>
                                             <option value="2">Salida</option>
                                         </select>
                                     </div>
+                                    <div id="persona_tipo"></div>
                                     <div class="form-group">
 
-                                        <button class="btn-success form-control">Enviar </button>
+                                        <button type="submit" class="btn-success form-control">Enviar </button>
                                     </div
                                 </form>
 
                             </div>
                             <div class="col-md-6">
                                 <h4>Existencia Producto</h4>
-                                <form action="">
+                                <form action="" id="existencia">
                                     <div class="form-group">
                                         <label for="">Fecha</label>
-                                        <input type="date" class="form-control">
+                                        <input type="date" name="fecha_producto" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Producto</label>
@@ -70,7 +72,7 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <button class="btn-success form-control">Enviar </button>
+                                        <button type="submit" class="btn-success form-control">Enviar </button>
                                     </div
                                 </form>
 
@@ -104,3 +106,32 @@
         </div>
     </div>
 </div>
+
+<script>
+
+
+    $("#pedido").submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url:"http://localhost/licoreria/Reporte/Pedido",
+            data:$(this).serialize(),
+            type:"post",
+            success:function (data) {
+                console.log(data);
+            }
+        });
+
+    });
+
+    $("#existencia").submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url:"http://localhost/licoreria/Reporte/Existencia",
+            data:$(this).serialize(),
+            success:function (data) {
+                console.log(data);
+            }
+        });
+
+    });
+</script>

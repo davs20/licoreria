@@ -47,6 +47,17 @@ if(isset($_POST["nombre_p"])){
 
 
 
+
+if(isset($_POST["fecha_pedido_reporte"])){
+    $router->add('/Reporte/Pedido',"Controllers\Reporte::pedidoReport",array(
+        "data"=> [
+            "fecha_pedido"=>$_POST["fecha_pedido_reporte"],
+            "tipo_pedido"=>$_POST["tipo_pedido"]
+        ]
+
+    ));
+}
+
 if(isset($_POST["id_marca"])){
     $router->add('/Marca/Create',"Controllers\Marca::create",array(
         "data"=> [

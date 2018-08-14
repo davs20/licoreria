@@ -16,6 +16,7 @@ return array(
     'Controllers\\Pedido' => $baseDir . '/app/Controllers/Pedido.php',
     'Controllers\\Producto' => $baseDir . '/app/Controllers/Producto.php',
     'Controllers\\Proveedor' => $baseDir . '/app/Controllers/Proveedor.php',
+    'Controllers\\Reporte' => $baseDir . '/app/Controllers/Reporte.php',
     'Controllers\\Usuario' => $baseDir . '/app/Controllers/Usuario.php',
     'Controllers\\accionControllers' => $baseDir . '/app/Controllers/accionControllers.php',
     'FPDF' => $vendorDir . '/setasign/fpdf/fpdf.php',
@@ -27,5 +28,6 @@ return array(
     'Models\\Pedido' => $baseDir . '/app/Models/Pedido.php',
     'Models\\Producto' => $baseDir . '/app/Models/Producto.php',
     'Models\\Proveedor' => $baseDir . '/app/Models/Proveedor.php',
+    'Models\\Reporte' => $baseDir . '/app/Models/Reporte.php',
     'Models\\Usuario' => $baseDir . '/app/Models/Usuario.php',
 );
